@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 17:25:07 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/03/14 16:05:53 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/03/14 19:29:31 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void    check_duplicate(t_data *data)
 	int j;
 
 	i = 0;
-	while (data->arg[i] && i < data->pos)
+	while (data->stack_a[i] && i < data->pos)
 	{
 		j = 0;
-		while (data->arg[j] && j < data->pos)
+		while (data->stack_a[j] && j < data->pos)
 		{
 			
 			if (i != j)
 			{
-				if (data->arg[i] == data->arg[j])
+				if (data->stack_a[i] == data->stack_a[j])
 				{	
 					error_code(3);
 				}		
@@ -82,8 +82,8 @@ void    is_valid(t_data *data, char *arg)
 	}
 	if (!(check_overflow(digit * signe)))
 		error_code (2);
-	data->arg[data->pos] = (int)digit * signe;
-	printf("data->arg --> %d\n", data->arg[data->pos]);
+	data->stack_a[data->pos] = (int)digit * signe;
+	printf("data->stack_a --> %d\n", data->stack_a[data->pos]);
 	data->pos++;
 }
 
@@ -96,14 +96,17 @@ int    main(int argc, char **argv)
 	if (argc < 2)
 		return (EXIT_FAILURE);
 	init_struct(&data);
-    data.arg = malloc((argc) * sizeof(int));
-	printf("error --> %d\n", argc);
-	data.arg[argc] = '\0';
-	while (argv[count])
+    data.stack_a = malloc((argc) * sizeof(int));
+    data.stack_b = malloc((argc) * sizeof(int));
+	data.stack_a[argc] = '\0';
+	data.stack_b[argc] = '\0';
+	data.size = argc - 1;
+	while (argv[data.size])
 	{
-		is_valid(&data, argv[count]);
+		is_valid(&data, argv[data.size]);
 		check_duplicate(&data);
-		count++;
+		data.size++;
 	}
+	get_instruction(data);
 	return (EXIT_SUCCESS);
 }
