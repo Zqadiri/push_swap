@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 18:15:23 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/03/13 10:10:53 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/03/14 15:40:13 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,16 @@
 ** Store all the arguments 
 */
 
-typedef struct      s_arg
+typedef struct      s_data
 {
-    int            data;
-    struct  s_arg *next;
-    
-}                   t_arg;
+	int             *arg;
+	int             pos;
+}                   t_data;
 
-typedef struct      s_index
-{
-    t_arg           arg;
-    int             valid_arg;
-}                   t_index;
+void		init(t_data *data);
+void        is_valid(t_data *data, char *arg);
+void    	check_duplicate(t_data *data);
+void        error_code(int  code);
 
-void        is_valid(t_index *index, char *arg);
-void        load_list(t_index *index);
-
-
+void        init_struct(t_data *data);
 #endif
