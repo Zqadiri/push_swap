@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 17:25:07 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/03/14 19:29:31 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/03/18 10:25:15 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 ** Check duplicate
 */
 
-void    check_duplicate(t_data *data)
+void    check_duplicate(t_data *m)
 {
 	int i;
 	int j;
 
 	i = 0;
-	while (data->stack_a[i] && i < data->pos)
+	while (m->stack_a[i].data && i < m->pos)
 	{
 		j = 0;
-		while (data->stack_a[j] && j < data->pos)
+		while (m->stack_a[j].data && j < m->pos)
 		{
 			
 			if (i != j)
 			{
-				if (data->stack_a[i] == data->stack_a[j])
+				if (m->stack_a[i].data == m->stack_a[j].data)
 				{	
 					error_code(3);
 				}		
@@ -45,9 +45,9 @@ void    check_duplicate(t_data *data)
 ** Check Overflow 
 */
 
-static int  check_overflow(unsigned long digit)
+static int  check_overflow(long digit)
 {
-	if ((int)digit > INT32_MAX && (int)digit < INT32_MIN)
+	if (digit > INT32_MAX || digit < INT32_MIN)
 		return (0);
 	return (1);
 }
@@ -56,9 +56,9 @@ static int  check_overflow(unsigned long digit)
 ** atoi
 */
 
-void    is_valid(t_data *data, char *arg)
+void    is_valid(t_data *m, char *arg)
 {
-	unsigned long digit;
+	long digit;
 	int i;
 	int signe;
 
@@ -82,31 +82,34 @@ void    is_valid(t_data *data, char *arg)
 	}
 	if (!(check_overflow(digit * signe)))
 		error_code (2);
-	data->stack_a[data->pos] = (int)digit * signe;
-	printf("data->stack_a --> %d\n", data->stack_a[data->pos]);
-	data->pos++;
+	m->stack_a[m->pos].data = (int)digit * signe;
+	m->stack_a[m->pos].alive = 1;
+	printf("m->stack_a_data --> %d\n", m->stack_a[m->pos].data);
+	// printf("m->stack_a_alive --> %d\n", m->stack_a[m->pos].alive);
+	m->pos++;
 }
 
 int    main(int argc, char **argv)
 {
-	t_data 	data;
+	t_data 	m;
 	int		count;
 
 	count = 1;
 	if (argc < 2)
 		return (EXIT_FAILURE);
-	init_struct(&data);
-    data.stack_a = malloc((argc) * sizeof(int));
-    data.stack_b = malloc((argc) * sizeof(int));
-	data.stack_a[argc] = '\0';
-	data.stack_b[argc] = '\0';
-	data.size = argc - 1;
-	while (argv[data.size])
+	init_struct(&m);
+	m.a_size = argc - 1;
+	if (!(m.stack_a = (t_stack_a*)malloc(sizeof(t_stack_a) * (argc - 1))))
+		exit(EXIT_FAILURE);
+	if (!(m.stack_b = (t_stack_b*)malloc(sizeof(t_stack_b) * (argc - 1))))
+		exit(EXIT_FAILURE);
+	init_stacks(&m);
+	while (argv[count])
 	{
-		is_valid(&data, argv[data.size]);
-		check_duplicate(&data);
-		data.size++;
+		is_valid(&m, argv[count]);
+		check_duplicate(&m);
+		count++;
 	}
-	get_instruction(data);
+	get_instruction(&m);
 	return (EXIT_SUCCESS);
 }

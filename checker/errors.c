@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 09:07:16 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/03/14 18:51:33 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/03/18 10:57:57 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,30 @@ void        error_code(int  code)
 void        init_struct(t_data *data)
 {
 	data->pos = 0;
-	data->size = 0;
+	// data->size_a = 0;
+	data->b_size = 0;
+	data->stack_b = NULL;
+	data->stack_a = NULL;
+}
+
+void		init_stacks(t_data *m)
+{
+	int i;
+
+	i = 0;
+	while (i <= m->b_size)
+	{
+		m->stack_b[i].data = 0;
+		// printf("_data --> %d\n", m->stack_b[i].data);
+		i++;
+	}
+	i = 0;
+	while (i <= m->a_size)
+	{
+		m->stack_b[i].alive = 0;
+		// printf("_alive --> %d\n", m->stack_b[i].alive);
+		i++;
+	}	
 }
 
 int get_next_line(char **line)
@@ -81,3 +104,35 @@ int get_next_line(char **line)
 	}
 	return (0);
 }
+
+void		print(t_data *m)
+{
+	int i;
+
+	i = 0;
+	while (i < m->a_size)
+	{
+		printf("a_data --> %d\n", m->stack_a[i].data);
+		i++;
+	}
+	i = 0;
+	while (i < m->a_size)
+	{
+		printf("a_alive --> %d\n", m->stack_a[i].alive);
+		i++;
+	}
+
+		i = 0;
+	while (i < m->b_size)
+	{
+		printf("b_data --> %d\n", m->stack_b[i].data);
+		i++;
+	}
+	i = 0;
+	while (i < m->b_size)
+	{
+		printf("b_alive --> %d\n", m->stack_b[i].alive);
+		i++;
+	}
+}
+
