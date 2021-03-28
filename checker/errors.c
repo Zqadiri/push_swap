@@ -12,6 +12,20 @@
 
 # include "checker.h"
 
+void	ft_putstr(char const *s)
+{
+	int i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
+}
+
 void        error_code(int  code)
 {
     write (2, "Error\n", 6);
@@ -134,5 +148,22 @@ void		print(t_data *m)
 		printf("b_alive --> %d\n", m->stack_b[i].alive);
 		i++;
 	}
+}
+
+int		is_sorted(t_data *m)
+{
+	int i;
+	int len;
+
+	i = 0;
+	len = m->a_size;
+	while (i < len - 1)
+	{
+		if (m->stack_a[i].data < m->stack_a[i + 1].data)
+			i++;
+		else
+			return (0);
+	}
+	return (1);
 }
 

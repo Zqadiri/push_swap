@@ -15,7 +15,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../libft/libft.h"
+//#include "../libft/libft.h"
 
 /*
 ** Store all the arguments 
@@ -50,5 +50,19 @@ void        init_struct(t_data *data);
 int 		get_next_line(char **line);
 void    	get_instruction(t_data *m);
 void		init_stacks(t_data *data);
-void		print(t_data *m); 
+void		print(t_data *m);
+void		ft_putstr(char const *s);
+int			is_sorted(t_data *m);
+
+void    rotate_b(t_data *m);
+void    rotate_a(t_data *m);
+void    push_b(t_data *m);
+void    push_a(t_data *m);
+void    swap_b(t_data *m);
+void    swap_a(t_data *m);
+void 	apply_rra(t_data *m);
+void 	apply_rrb(t_data *m);
+
+
+
 #endif

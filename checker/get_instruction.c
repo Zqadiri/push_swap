@@ -13,6 +13,50 @@
 # include "checker.h"
 
 /*
+** shit down all elements of stack b by 1. The last element
+** becomes the first one.
+*/
+
+void 	apply_rrb(t_data *m)
+{
+	register int i;
+	register int tmp;
+
+	if (m->b_size == 0)
+		return ;
+	i = m->b_size - 1;
+	tmp = m->stack_b[i].data;
+	while (i > 0) 
+	{
+		m->stack_b[i].data = m->stack_b[i - 1].data;
+		i--;
+	}
+	m->stack_b[0].data = tmp;
+}
+
+/*
+** shit down all elements of stack a by 1. The last element
+** becomes the first one.
+*/
+
+void 	apply_rra(t_data *m)
+{
+	int i;
+	int tmp;
+
+	if (m->a_size == 0)
+		return ;
+	i = m->a_size - 1;
+	tmp = m->stack_a[i].data;
+	while (i > 0) 
+	{
+		m->stack_a[i].data = m->stack_a[i - 1].data;
+		i--;
+	}
+	m->stack_a[0].data = tmp;
+}
+
+/*
 ** swap the first 2 elements at the top of stack a.
 ** Do nothing if there is only one or no elements
 */
@@ -123,7 +167,7 @@ void    rotate_a(t_data *m)
 ** element becomes the last one.
 */
 
-void    rotate(t_data *m)
+void    rotate_b(t_data *m)
 {
     int i;
     int tmp;
@@ -188,7 +232,23 @@ void    get_instruction(t_data *m)
         {
             rotate_a(m);
             rotate_b(m);
+        }        
+        else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'a')
+        {
+            apply_rra(m);
+            print(m);
         }
-        exit (EXIT_SUCCESS);
+        else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'b')
+        {
+            apply_rrb(m);
+            print(m);
+        }
+        else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'r')
+        {
+            apply_rrb(m);
+            apply_rra(m);
+            print(m);
+        }
+        is_sorted(m);
     }
 }

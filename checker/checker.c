@@ -111,5 +111,9 @@ int    main(int argc, char **argv)
 		count++;
 	}
 	get_instruction(&m);
+	if (is_sorted(&m))
+		ft_putstr("OK\n");
+	else
+		ft_putstr("KO\n");
 	return (EXIT_SUCCESS);
 }
