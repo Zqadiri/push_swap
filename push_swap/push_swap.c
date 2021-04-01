@@ -99,7 +99,6 @@ void sort_stack_3(t_data *m)
 
 void sort_stack_5(t_data *m)
 {
-	// printf ("sort 3\n");
 	int small;
 	int minimizing;
 
@@ -132,15 +131,10 @@ void sort_stack_5(t_data *m)
 		push_a(m);
 		printf ("pa\n");
 	}
-	// if (m->a_size == 5)
-	// print (m);
 }
-
 
 void begin_sort(t_data *m)
 {
-	// printf ("begin_sort\n");
-	// printf ("the size : %d\n", m->a_size);
 	if (is_sorted(m))
 		return ;
 	if (m->a_size <= 3)

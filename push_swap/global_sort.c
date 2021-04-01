@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:33:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/01 15:03:38 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/01 15:36:07 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ int sorted(int *dup)
 
 /* Bubble sort the given linked list */
 
-int     find_pivot(t_data *m)
+void     find_pivot(t_data *m)
 {
-	// printf ("in");
-	int i;
+	int i;	
+	int index;
+	int mid;
 
 	i = 0;
 	while (i < m->a_size)
@@ -57,15 +58,17 @@ int     find_pivot(t_data *m)
             }
         }
     }
-	// i = 0;
-	// while (i < m->a_size)
-	// {
-	// 	printf ("%d\n", m->dup[i]);
-	// 	i++;
-	// }
-	return (i);
+	mid = m->dup[m->a_size / 2];		
+	i = 0;
+	while (i < m->a_size)
+	{
+		if (m->stack_a[i] == mid)
+			m->inst.pivot = i;
+		i++;
+	}
+	printf ("mid : %d\n", mid);
+	printf ("index : %d\n", m->inst.pivot);
 }
-
 
 void	global_sort(t_data *m)
 {
@@ -78,5 +81,5 @@ void	global_sort(t_data *m)
 	// else
 	//     minimizing = 10; // find the best value 
 	///// choose the pivot 
-	m->inst.pivot = find_pivot(m);
+	find_pivot(m);
 }

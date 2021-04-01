@@ -67,7 +67,7 @@ void 		apply_rra(t_data *m);
 void 		apply_rrb(t_data *m);
 
 void		global_sort(t_data *m);
-int     	find_pivot(t_data *m);
+void     	find_pivot(t_data *m);
 void		sort_stack_3(t_data *m);
 void 		sort_stack_5(t_data *m);
 void		begin_sort(t_data *m);
