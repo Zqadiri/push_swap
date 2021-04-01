@@ -30,7 +30,8 @@ typedef struct		s_instruction
 {
 	char			*stack_a_rot;
 	char			*stack_b_rot;
-	int				pos;
+	char			*best_rot;
+	int				index;
 	int				pivot;
 }					t_instruction;
 
