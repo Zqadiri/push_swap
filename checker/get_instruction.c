@@ -25,13 +25,13 @@ void 	apply_rrb(t_data *m)
 	if (m->b_size == 0)
 		return ;
 	i = m->b_size - 1;
-	tmp = m->stack_b[i].data;
+	tmp = m->stack_b[i];
 	while (i > 0) 
 	{
-		m->stack_b[i].data = m->stack_b[i - 1].data;
+		m->stack_b[i] = m->stack_b[i - 1];
 		i--;
 	}
-	m->stack_b[0].data = tmp;
+	m->stack_b[0] = tmp;
 }
 
 /*
@@ -47,13 +47,13 @@ void 	apply_rra(t_data *m)
 	if (m->a_size == 0)
 		return ;
 	i = m->a_size - 1;
-	tmp = m->stack_a[i].data;
+	tmp = m->stack_a[i];
 	while (i > 0) 
 	{
-		m->stack_a[i].data = m->stack_a[i - 1].data;
+		m->stack_a[i] = m->stack_a[i - 1];
 		i--;
 	}
-	m->stack_a[0].data = tmp;
+	m->stack_a[0] = tmp;
 }
 
 /*
@@ -69,9 +69,9 @@ void    swap_a(t_data *m)
 		exit(EXIT_SUCCESS);
 	else
 	{
-		tmp = m->stack_a[0].data;
-		m->stack_a[0].data = m->stack_a[1].data;
-		m->stack_a[1].data = tmp;
+		tmp = m->stack_a[0];
+		m->stack_a[0] = m->stack_a[1];
+		m->stack_a[1] = tmp;
 	}
 }
 
@@ -90,9 +90,9 @@ void    swap_b(t_data *m)
 		exit(EXIT_SUCCESS);
 	else
 	{
-		tmp = m->stack_b[0].data;
-		m->stack_b[0].data = m->stack_b[1].data;
-		m->stack_b[1].data = tmp;
+		tmp = m->stack_b[0];
+		m->stack_b[0] = m->stack_b[1];
+		m->stack_b[1] = tmp;
 	}
 }
 
@@ -109,11 +109,11 @@ void    push_a(t_data *m)
 	if (m->b_size == 0)
 		return ;
 	while (i-- > 0)
-		m->stack_a[i + 1].data = m->stack_a[i].data;
-	m->stack_a[0].data = m->stack_b[0].data;
+		m->stack_a[i + 1] = m->stack_a[i];
+	m->stack_a[0] = m->stack_b[0];
 	i = 0;
 	while (i++ <= m->b_size)
-		m->stack_b[i - 1].data = m->stack_b[i].data;
+		m->stack_b[i - 1] = m->stack_b[i];
 	m->a_size++;
 	m->b_size--;
 }
@@ -131,11 +131,11 @@ void    push_b(t_data *m)
 	if (m->a_size == 0)
 		return ;
 	while (i-- > 0)
-		m->stack_b[i + 1].data = m->stack_b[i].data;
-	m->stack_b[0].data = m->stack_a[0].data;
+		m->stack_b[i + 1] = m->stack_b[i];
+	m->stack_b[0] = m->stack_a[0];
 	i = 0;
 	while (i++ <= m->a_size)
-		m->stack_a[i - 1].data = m->stack_a[i].data;
+		m->stack_a[i - 1] = m->stack_a[i];
 	m->b_size++;
 	m->a_size--;
 }
@@ -151,15 +151,15 @@ void    rotate_a(t_data *m)
 	int tmp;
 
 	i = 1;
-	tmp = m->stack_a[0].data;
+	tmp = m->stack_a[0];
 	if (m->a_size == 0)
 		return ;
 	while (i < m->a_size)
 	{
-		m->stack_a[i - 1].data = m->stack_a[i].data;
+		m->stack_a[i - 1] = m->stack_a[i];
 		i++;
 	}
-	m->stack_a[i - 1].data = tmp;
+	m->stack_a[i - 1] = tmp;
 }
 
 /*
@@ -173,15 +173,15 @@ void    rotate_b(t_data *m)
 	int tmp;
 
 	i = 1;
-	tmp = m->stack_b[0].data;
+	tmp = m->stack_b[0];
 	if (m->b_size == 0)
 		return ;
 	while (i < m->b_size)
 	{
-		m->stack_b[i - 1].data = m->stack_b[i].data;
+		m->stack_b[i - 1] = m->stack_b[i];
 		i++;
 	}
-	m->stack_b[i - 1].data = tmp;
+	m->stack_b[i - 1] = tmp;
 }
 
 void    get_instruction(t_data *m)

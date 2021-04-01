@@ -42,26 +42,40 @@ void        error_code(int  code)
     exit (EXIT_FAILURE);
 }
 
-void        init_struct(t_data *data)
+void        init_struct(t_data *m, int argc )
 {
-	data->pos = 0;
-	// data->size_a = 0;
-	data->b_size = 0;
-	data->stack_b = NULL;
-	data->stack_a = NULL;
+	m->pos = 0;
+	m->a_size = argc;
+	m->b_size = argc;
+	m->stack_b = NULL;
+	m->stack_a = NULL;
 }
 
-void		init_stacks(t_data *m)
+void		init_stacks(t_data *m, int argc)
 {
 	int i;
-
+	
 	i = 0;
-	while (i <= m->b_size)
+	while (i < argc)
 	{
-		m->stack_b[i].data = 0;
-		// printf("_data --> %d\n", m->stack_b[i].data);
+		m->stack_a[i] = 0;
+		// printf("stack_a --> %d\n", m->stack_a[i]);
 		i++;
-	}	
+	}
+	i = 0;
+	while (i < argc)
+	{
+		m->stack_b[i] = 0;
+		// printf("stack_b --> %d\n", m->stack_b[i]);
+		i++;
+	}
+	i = 0;
+	while (i < argc)
+	{
+		m->dup[i] = 0;
+		// printf("dup --> %d\n", m->dup[i]);
+		i++;
+	}
 }
 
 int get_next_line(char **line)
@@ -121,15 +135,21 @@ void		print(t_data *m)
 	i = 0;
 	while (i < m->a_size)
 	{
-		printf("a_data --> %d\n", m->stack_a[i].data);
+		printf("a_data --> %d\n", m->stack_a[i]);
 		i++;
 	}
 	i = 0;
 	while (i < m->b_size)
 	{
-		printf("b_data --> %d\n", m->stack_b[i].data);
+		printf("b_data --> %d\n", m->stack_b[i]);
 		i++;
 	}
+	// i = 0;
+	// while (i < m->a_size)
+	// {
+	// 	printf("dup_data --> %d\n", m->dup[i]);
+	// 	i++;
+	// }
 }
 
 int		is_sorted(t_data *m)
@@ -141,11 +161,10 @@ int		is_sorted(t_data *m)
 	len = m->a_size;
 	while (i < len - 1)
 	{
-		if (m->stack_a[i].data < m->stack_a[i + 1].data)
+		if (m->stack_a[i] < m->stack_a[i + 1])
 			i++;
 		else
 			return (0);
 	}
 	return (1);
 }
-

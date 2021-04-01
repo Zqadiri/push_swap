@@ -22,15 +22,14 @@ void    check_duplicate(t_data *m)
 	int j;
 
 	i = 0;
-	while (m->stack_a[i].data && i < m->pos)
+	while (m->stack_a[i] && i < m->pos)
 	{
 		j = 0;
-		while (m->stack_a[j].data && j < m->pos)
+		while (m->stack_a[j] && j < m->pos)
 		{
-			
 			if (i != j)
 			{
-				if (m->stack_a[i].data == m->stack_a[j].data)
+				if (m->stack_a[i] == m->stack_a[j])
 				{	
 					error_code(3);
 				}		
@@ -82,37 +81,37 @@ void    is_valid(t_data *m, char *arg)
 	}
 	if (!(check_overflow(digit * signe)))
 		error_code (2);
-	m->stack_a[m->pos].data = (int)digit * signe;
+	m->stack_a[m->pos] = (int)digit * signe;
 	m->pos++;
 }
 
 
-int    main(int argc, char **argv)
-{
-	t_data 	m;
-	int		count;
+// int    main(int argc, char **argv)
+// {
+// 	t_data 	m;
+// 	int		count;
 
-	count = 1;
-	if (argc < 2)
-		return (EXIT_FAILURE);
-	init_struct(&m);
-	m.a_size = argc - 1;
-	if (!(m.stack_a = (t_stack_a*)malloc(sizeof(t_stack_a) * (argc - 1))))
-		exit(EXIT_FAILURE);
-	if (!(m.stack_b = (t_stack_b*)malloc(sizeof(t_stack_b) * (argc - 1))))
-		exit(EXIT_FAILURE);
-	init_stacks(&m);
-	while (argv[count])
-	{
-		is_valid(&m, argv[count]);
-		check_duplicate(&m);
-		count++;
-	}
-	get_instruction(&m);
-	if (is_sorted(&m))
-		ft_putstr("OK\n");
-	else
-		ft_putstr("KO\n");
-	print (&m);
-	return (EXIT_SUCCESS);
-}
+// 	count = 1;
+// 	if (argc < 2)
+// 		return (EXIT_FAILURE);
+// 	init_struct(&m);
+// 	m.a_size = argc - 1;
+// 	if (!(m.stack_a = (t_stack_a*)malloc(sizeof(t_stack_a) * (argc - 1))))
+// 		exit(EXIT_FAILURE);
+// 	if (!(m.stack_b = (t_stack_a*)malloc(sizeof(t_stack_a) * (argc - 1))))
+// 		exit(EXIT_FAILURE);
+// 	init_stacks(&m);
+// 	while (argv[count])
+// 	{
+// 		is_valid(&m, argv[count]);
+// 		check_duplicate(&m);
+// 		count++;
+// 	}
+// 	get_instruction(&m);
+// 	if (is_sorted(&m))
+// 		ft_putstr("OK\n");
+// 	else
+// 		ft_putstr("KO\n");
+// 	print (&m);
+// 	return (EXIT_SUCCESS);
+// }

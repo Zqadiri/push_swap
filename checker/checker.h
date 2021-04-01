@@ -20,15 +20,11 @@
 /*
 ** Store all the arguments 
 */
-typedef struct 		s_stack_a
-{
-	int				data;
-}					t_stack_a;
+// typedef struct 		s_stack_a
+// {
+// 	int				data;
+// }					t_stack_a;
 
-typedef struct 		s_stack_b
-{
-	int				data;
-}					t_stack_b;
 
 typedef struct		s_instruction
 {
@@ -40,8 +36,9 @@ typedef struct		s_instruction
 
 typedef struct      s_data
 {
-	t_stack_a		*stack_a;
-	t_stack_b		*stack_b;
+	int				*stack_a;
+	int				*stack_b;
+	int				*dup;
 	int             pos;
 	int				a_size;
 	int				b_size;
@@ -52,10 +49,10 @@ void		init(t_data *data);
 void        is_valid(t_data *data, char *arg);
 void    	check_duplicate(t_data *data);
 void        error_code(int  code);
-void        init_struct(t_data *data);
+void        init_struct(t_data *data, int argc);
 int 		get_next_line(char **line);
 void    	get_instruction(t_data *m);
-void		init_stacks(t_data *data);
+void		init_stacks(t_data *data, int argc);
 void		print(t_data *m);
 void		ft_putstr(char const *s);
 int			is_sorted(t_data *m);
@@ -69,6 +66,10 @@ void    	swap_a(t_data *m);
 void 		apply_rra(t_data *m);
 void 		apply_rrb(t_data *m);
 
-
+void		global_sort(t_data *m);
+int     	find_pivot(t_data *m);
+void		sort_stack_3(t_data *m);
+void 		sort_stack_5(t_data *m);
+void		begin_sort(t_data *m);
 
 #endif
