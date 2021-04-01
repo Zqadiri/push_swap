@@ -21,12 +21,12 @@ int find_big_one(t_data *m)
 	big = 0;
 	if (m->a_size == 0)
 		return (-1);
-	int tmp = m->stack_a[i].data;
+	int tmp = m->stack_a[i];
 	while (i < m->a_size) 
 	{
-		if (tmp < m->stack_a[i].data)
+		if (tmp < m->stack_a[i])
 		{
-			tmp = m->stack_a[i].data;
+			tmp = m->stack_a[i];
 			big = i;
 		}
 		i++;
@@ -43,12 +43,12 @@ int find_small_one(t_data *m)
 	small = 0;
 	if (m->a_size == 0)
 		return (-1);
-	int tmp = m->stack_a[i].data;
+	int tmp = m->stack_a[i];
 	while (i < m->a_size) 
 	{
-		if (tmp > m->stack_a[i].data)
+		if (tmp > m->stack_a[i])
 		{
-			tmp = m->stack_a[i].data;
+			tmp = m->stack_a[i];
 			small = i;
 		}
 		i++;
@@ -62,7 +62,6 @@ int find_small_one(t_data *m)
 
 void sort_stack_3(t_data *m)
 {
-	
 	int big;
 
 	big = find_big_one(m);
@@ -70,7 +69,7 @@ void sort_stack_3(t_data *m)
 		return ;
 	if (m->a_size == 2)
 	{
-		if (m->stack_a[0].data > m->stack_a[1].data)
+		if (m->stack_a[0] > m->stack_a[1])
 		{
 			printf ("rra\n");
 			apply_rra(m);
@@ -88,19 +87,19 @@ void sort_stack_3(t_data *m)
 			printf ("rra\n");
 			apply_rra(m);
 		}
-		if (m->stack_a[0].data > m->stack_a[1].data)
+		if (m->stack_a[0] > m->stack_a[1])
 		{
 			printf ("sa\n");
 			swap_a(m);
 		}
 	}
-	print (m);
 }
 
 
 
 void sort_stack_5(t_data *m)
 {
+	// printf ("sort 3\n");
 	int small;
 	int minimizing;
 
@@ -134,14 +133,16 @@ void sort_stack_5(t_data *m)
 		printf ("pa\n");
 	}
 	// if (m->a_size == 5)
-	print (m);
+	// print (m);
 }
 
 
 void begin_sort(t_data *m)
 {
+	// printf ("begin_sort\n");
+	// printf ("the size : %d\n", m->a_size);
 	if (is_sorted(m))
-		exit(EXIT_SUCCESS);
+		return ;
 	if (m->a_size <= 3)
 		sort_stack_3(m);
 	if (m->a_size > 3 && m->a_size <= 5)
@@ -160,20 +161,22 @@ int main(int argc, char *argv[])
 	count = 1;
 	if (argc-- < 2)
 		exit (EXIT_FAILURE);
-	init_struct(&m);
-	if (!(m.stack_a = (t_stack_a*)malloc(sizeof(t_stack_a) * (argc - 1))))
+	init_struct(&m, argc);
+	if (!(m.stack_a = malloc(sizeof(int) * (argc))))
 		exit(EXIT_FAILURE);
-	if (!(m.stack_b = (t_stack_b*)malloc(sizeof(t_stack_b) * (argc - 1))))
+	if (!(m.stack_b = malloc(sizeof(int) * (argc))))
 		exit(EXIT_FAILURE);
-	init_stacks(&m);
+	if (!(m.dup = malloc(sizeof(int) * (argc))))
+		exit(EXIT_FAILURE);
+	init_stacks(&m, argc);
 	while (argv[count])
 	{
 		is_valid(&m, argv[count]);
 		check_duplicate(&m);
 		count++;
 	}
-	m.a_size = argc;
 	begin_sort(&m);
+	print (&m);
 	if (is_sorted(&m))
 		ft_putstr("OK\n");
 	else
