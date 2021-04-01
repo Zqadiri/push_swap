@@ -12,6 +12,10 @@
 
 # include "checker.h"
 
+void	ft_putchar(char c) {
+	write(1, &c, 1);
+}
+
 void	ft_putstr(char const *s)
 {
 	int i;
@@ -57,13 +61,6 @@ void		init_stacks(t_data *m)
 		m->stack_b[i].data = 0;
 		// printf("_data --> %d\n", m->stack_b[i].data);
 		i++;
-	}
-	i = 0;
-	while (i <= m->a_size)
-	{
-		m->stack_b[i].alive = 0;
-		// printf("_alive --> %d\n", m->stack_b[i].alive);
-		i++;
 	}	
 }
 
@@ -98,8 +95,6 @@ int get_next_line(char **line)
 		free(rest);
 		rest = NULL;
 	}
-
-
 	while ((ret = read(0,&temp, 1000)))
 	{
 		temp[ret] = 0;
@@ -130,22 +125,9 @@ void		print(t_data *m)
 		i++;
 	}
 	i = 0;
-	while (i < m->a_size)
-	{
-		printf("a_alive --> %d\n", m->stack_a[i].alive);
-		i++;
-	}
-
-		i = 0;
 	while (i < m->b_size)
 	{
 		printf("b_data --> %d\n", m->stack_b[i].data);
-		i++;
-	}
-	i = 0;
-	while (i < m->b_size)
-	{
-		printf("b_alive --> %d\n", m->stack_b[i].alive);
 		i++;
 	}
 }

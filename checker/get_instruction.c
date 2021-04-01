@@ -63,16 +63,16 @@ void 	apply_rra(t_data *m)
 
 void    swap_a(t_data *m)
 {
-    int  tmp;
+	int  tmp;
 
-    if (m->a_size < 2)
-        exit(EXIT_SUCCESS);
-    else
-    {
-        tmp = m->stack_a[0].data;
-        m->stack_a[0].data = m->stack_a[1].data;
-        m->stack_a[1].data = tmp;
-    }
+	if (m->a_size < 2)
+		exit(EXIT_SUCCESS);
+	else
+	{
+		tmp = m->stack_a[0].data;
+		m->stack_a[0].data = m->stack_a[1].data;
+		m->stack_a[1].data = tmp;
+	}
 }
 
 /*
@@ -82,18 +82,18 @@ void    swap_a(t_data *m)
 
 void    swap_b(t_data *m)
 {
-    int  tmp;
+	int  tmp;
 
-    if (m->stack_b == NULL)
-        exit (EXIT_SUCCESS);
-    if (m->b_size < 2)
-        exit(EXIT_SUCCESS);
-    else
-    {
-        tmp = m->stack_b[0].data;
-        m->stack_b[0].data = m->stack_b[1].data;
-        m->stack_b[1].data = tmp;
-    }
+	if (m->stack_b == NULL)
+		exit (EXIT_SUCCESS);
+	if (m->b_size < 2)
+		exit(EXIT_SUCCESS);
+	else
+	{
+		tmp = m->stack_b[0].data;
+		m->stack_b[0].data = m->stack_b[1].data;
+		m->stack_b[1].data = tmp;
+	}
 }
 
 /*
@@ -103,9 +103,9 @@ void    swap_b(t_data *m)
 
 void    push_a(t_data *m)
 {
-    int i;
+	int i;
 
-    i = m->a_size;
+	i = m->a_size;
 	if (m->b_size == 0)
 		return ;
 	while (i-- > 0)
@@ -114,7 +114,7 @@ void    push_a(t_data *m)
 	i = 0;
 	while (i++ <= m->b_size)
 		m->stack_b[i - 1].data = m->stack_b[i].data;
-    m->a_size++;
+	m->a_size++;
 	m->b_size--;
 }
 
@@ -125,9 +125,9 @@ void    push_a(t_data *m)
 
 void    push_b(t_data *m)
 {
-    int i;
+	int i;
 
-    i = m->b_size;
+	i = m->b_size;
 	if (m->a_size == 0)
 		return ;
 	while (i-- > 0)
@@ -136,7 +136,7 @@ void    push_b(t_data *m)
 	i = 0;
 	while (i++ <= m->a_size)
 		m->stack_a[i - 1].data = m->stack_a[i].data;
-    m->b_size++;
+	m->b_size++;
 	m->a_size--;
 }
 
@@ -147,7 +147,7 @@ void    push_b(t_data *m)
 
 void    rotate_a(t_data *m)
 {
-    int i;
+	int i;
 	int tmp;
 
 	i = 1;
@@ -169,86 +169,64 @@ void    rotate_a(t_data *m)
 
 void    rotate_b(t_data *m)
 {
-    int i;
-    int tmp;
+	int i;
+	int tmp;
 
-    i = 1;
-    tmp = m->stack_b[0].data;
-    if (m->b_size == 0)
-        return ;
-    while (i < m->b_size)
-    {
-        m->stack_b[i - 1].data = m->stack_b[i].data;
-        i++;
-    }
-    m->stack_b[i - 1].data = tmp;
+	i = 1;
+	tmp = m->stack_b[0].data;
+	if (m->b_size == 0)
+		return ;
+	while (i < m->b_size)
+	{
+		m->stack_b[i - 1].data = m->stack_b[i].data;
+		i++;
+	}
+	m->stack_b[i - 1].data = tmp;
 }
 
 void    get_instruction(t_data *m)
 {
-    int ret;
-    char *line;
+	int ret;
+	char *line;
 
-    ret = 1;
-    while (ret)
-    {
-        ret = get_next_line(&line);
-        if (line[0] == 's' && line[1] == 'a')
-        {
-            swap_a(m);
-            print(m);
-        }            
-        else if (line[0] == 's' && line[1] == 'b')
-        {
-            swap_b(m);
-            print(m);
-        }  
-        else if (line[0] == 's' && line[1] == 's')
-        {
-            swap_a(m);
-            swap_b(m);
-        }
-        else if (line[0] == 'p' && line[1] == 'a')
-        {
-            push_a(m);
-            print(m);
-        }
-        else if (line[0] == 'p' && line[1] == 'b')
-        {
-            push_b(m);
-            print(m);
-        }
-        else if (line[0] == 'r' && line[1] == 'a')
-        {
-            rotate_a(m);
-            print(m);
-        } 
-        else if (line[0] == 'r' && line[1] == 'b')
-        {
-            rotate_b(m);
-            print(m);
-        }
-        else if (line[0] == 'r' && line[1] == 'r')
-        {
-            rotate_a(m);
-            rotate_b(m);
-        }        
-        else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'a')
-        {
-            apply_rra(m);
-            print(m);
-        }
-        else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'b')
-        {
-            apply_rrb(m);
-            print(m);
-        }
-        else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'r')
-        {
-            apply_rrb(m);
-            apply_rra(m);
-            print(m);
-        }
-        is_sorted(m);
-    }
+	ret = 1;
+	if (is_sorted(m))
+		return ;
+	while (ret)
+	{
+		ret = get_next_line(&line);
+		if (line[0] == 's' && line[1] == 'a')
+			swap_a(m);      
+		else if (line[0] == 's' && line[1] == 'b')
+			swap_b(m);
+		else if (line[0] == 's' && line[1] == 's')
+		{
+			swap_a(m);
+			swap_b(m);
+		}
+		else if (line[0] == 'p' && line[1] == 'a')
+			push_a(m);
+		else if (line[0] == 'p' && line[1] == 'b')
+			push_b(m);
+		else if (line[0] == 'r' && line[1] == 'a')
+			rotate_a(m);
+		else if (line[0] == 'r' && line[1] == 'b')
+			rotate_b(m);
+		else if (line[0] == 'r' && line[1] == 'r')
+		{
+			rotate_a(m);
+			rotate_b(m);
+		}      
+		else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'a')
+			apply_rra(m);
+		else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'b')
+			apply_rrb(m);
+		else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'r')
+		{
+			apply_rrb(m);
+			apply_rra(m);
+		}
+		else
+			return ;
+	}
 }

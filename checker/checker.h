@@ -15,23 +15,28 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-//#include "../libft/libft.h"
+#include "../libft/libft.h"
 
 /*
 ** Store all the arguments 
 */
-typedef struct s_stack_a
+typedef struct 		s_stack_a
 {
-	int			data;
-	int			alive;
+	int				data;
+}					t_stack_a;
 
-}				t_stack_a;
-
-typedef struct s_stack_b
+typedef struct 		s_stack_b
 {
-	int			data;
-	int			alive;
-}				t_stack_b;
+	int				data;
+}					t_stack_b;
+
+typedef struct		s_instruction
+{
+	char			*stack_a_rot;
+	char			*stack_b_rot;
+	int				pos;
+	int				pivot;
+}					t_instruction;
 
 typedef struct      s_data
 {
@@ -40,6 +45,7 @@ typedef struct      s_data
 	int             pos;
 	int				a_size;
 	int				b_size;
+	t_instruction	inst;
 }                   t_data;
 
 void		init(t_data *data);
@@ -54,14 +60,14 @@ void		print(t_data *m);
 void		ft_putstr(char const *s);
 int			is_sorted(t_data *m);
 
-void    rotate_b(t_data *m);
-void    rotate_a(t_data *m);
-void    push_b(t_data *m);
-void    push_a(t_data *m);
-void    swap_b(t_data *m);
-void    swap_a(t_data *m);
-void 	apply_rra(t_data *m);
-void 	apply_rrb(t_data *m);
+void    	rotate_b(t_data *m);
+void    	rotate_a(t_data *m);
+void    	push_b(t_data *m);
+void    	push_a(t_data *m);
+void    	swap_b(t_data *m);
+void    	swap_a(t_data *m);
+void 		apply_rra(t_data *m);
+void 		apply_rrb(t_data *m);
 
 
 

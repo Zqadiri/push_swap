@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/31 10:34:07 by zqadiri           #+#    #+#             */
+/*   Updated: 2021/03/31 10:34:07 by zqadiri          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "../checker/checker.h"
 
 int find_big_one(t_data *m)
@@ -79,27 +91,24 @@ void sort_stack_3(t_data *m)
 		if (m->stack_a[0].data > m->stack_a[1].data)
 		{
 			printf ("sa\n");
-			swap_a(m); 
+			swap_a(m);
 		}
 	}
-	// print (m);
+	print (m);
 }
 
-/*
-**  quick sort
-*/
+
 
 void sort_stack_5(t_data *m)
 {
-	int pivot;
 	int small;
-	int optimizer;
+	int minimizing;
 
 	small = find_small_one(m);
-	optimizer = 2;
+	minimizing = 2;
 	if (m->a_size == 4)
 	{
-		if (small > optimizer)
+		if (small > minimizing)
 		{
 			while (small != 0)
 			{
@@ -124,12 +133,10 @@ void sort_stack_5(t_data *m)
 		push_a(m);
 		printf ("pa\n");
 	}
-	if (m->a_size == 5)
-	{
-		
-	}
-	// print (m);
+	// if (m->a_size == 5)
+	print (m);
 }
+
 
 void begin_sort(t_data *m)
 {
@@ -139,6 +146,10 @@ void begin_sort(t_data *m)
 		sort_stack_3(m);
 	if (m->a_size > 3 && m->a_size <= 5)
 		sort_stack_5(m);
+	else
+	{
+		global_sort(m);
+	} 
 }
 
 int main(int argc, char *argv[])
@@ -155,7 +166,6 @@ int main(int argc, char *argv[])
 	if (!(m.stack_b = (t_stack_b*)malloc(sizeof(t_stack_b) * (argc - 1))))
 		exit(EXIT_FAILURE);
 	init_stacks(&m);
-	// print (&m);
 	while (argv[count])
 	{
 		is_valid(&m, argv[count]);

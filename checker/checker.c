@@ -83,11 +83,9 @@ void    is_valid(t_data *m, char *arg)
 	if (!(check_overflow(digit * signe)))
 		error_code (2);
 	m->stack_a[m->pos].data = (int)digit * signe;
-	m->stack_a[m->pos].alive = 1;
-	printf("m->stack_a_data --> %d\n", m->stack_a[m->pos].data);
-	// printf("m->stack_a_alive --> %d\n", m->stack_a[m->pos].alive);
 	m->pos++;
 }
+
 
 int    main(int argc, char **argv)
 {
@@ -115,5 +113,6 @@ int    main(int argc, char **argv)
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
+	print (&m);
 	return (EXIT_SUCCESS);
 }
