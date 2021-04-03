@@ -49,6 +49,9 @@ void        init_struct(t_data *m, int argc )
 	m->b_size = argc;
 	m->stack_b = NULL;
 	m->stack_a = NULL;
+	m->inst.index = -1;
+	m->inst.pivot = -1;
+	m->inst.best_rot = NULL;
 }
 
 void		init_stacks(t_data *m, int argc)
@@ -59,77 +62,28 @@ void		init_stacks(t_data *m, int argc)
 	while (i < argc)
 	{
 		m->stack_a[i] = 0;
-		// printf("stack_a --> %d\n", m->stack_a[i]);
 		i++;
 	}
 	i = 0;
 	while (i < argc)
 	{
 		m->stack_b[i] = 0;
-		// printf("stack_b --> %d\n", m->stack_b[i]);
 		i++;
 	}
 	i = 0;
 	while (i < argc)
 	{
 		m->dup[i] = 0;
-		// printf("dup --> %d\n", m->dup[i]);
 		i++;
 	}
 }
 
-int get_next_line(char **line)
-{
-	static char *rest;
-	char temp [1001];
-	char *p;
-	char *pfree;
-	int ret;
-
-
-	if (!line)
-		return (-1);
-	*line = ft_strdup("");
-	if (rest)
-	{
-		if ((p = ft_strchr(rest, '\n')))
-		{
-			*p = 0;
-			pfree = *line;
-			*line = ft_strdup(rest);
-			free(pfree);
-			pfree = rest;
-			rest = ft_strdup(p + 1);
-			free(pfree);
-			return (1);
-		}
-		pfree = *line;
-		*line = ft_strdup(rest);
-		free(pfree);
-		free(rest);
-		rest = NULL;
-	}
-	while ((ret = read(0,&temp, 1000)))
-	{
-		temp[ret] = 0;
-		if ((p = ft_strchr(temp, '\n')))
-		{
-			*p = 0;
-			pfree = *line;
-			*line = ft_strjoin(*line, temp);
-			free(pfree);
-			rest = ft_strdup(p + 1);
-			return (1);
-		}
-		pfree = *line;
-		*line = ft_strjoin(*line, temp);
-		free(pfree);
-	}
-	return (0);
-}
 
 void		print(t_data *m)
 {
+	printf ("a_size : %d\n", m->a_size);
+	printf ("b_size : %d\n", m->b_size);
+	printf ("pivot : %d\n", m->inst.pivot);
 	int i;
 
 	i = 0;
@@ -138,6 +92,7 @@ void		print(t_data *m)
 		printf("a_data --> %d\n", m->stack_a[i]);
 		i++;
 	}
+	printf ("********************************\n");
 	i = 0;
 	while (i < m->b_size)
 	{
@@ -167,4 +122,45 @@ int		is_sorted(t_data *m)
 			return (0);
 	}
 	return (1);
+}
+
+static char	*ft_join(char *s, char c)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	while (s[i])
+		i++;
+	if (!(str = (char *)malloc(i + 2)))
+		return (0);
+	i = 0;
+	while (s[i])
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = c;
+	str[i + 1] = '\0';
+	free(s);
+	return (str);
+}
+
+int			get_next_line(char **line)
+{
+	char	*buffer;
+	int		flag;
+
+	buffer = (char *)malloc(2);
+	if (!line || !(*line = (char *)malloc(1)) || !buffer)
+		return (-1);
+	*line[0] = '\0';
+	while ((flag = read(0, buffer, 1)) > 0)
+	{
+		if (buffer[0] == '\n')
+			break ;
+		*line = ft_join(*line, buffer[0]);
+	}
+	free(buffer);
+	return (flag);
 }

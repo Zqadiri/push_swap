@@ -170,6 +170,7 @@ int main(int argc, char *argv[])
 		count++;
 	}
 	begin_sort(&m);
+	printf ("*********************************************\n");
 	print (&m);
 	if (is_sorted(&m))
 		ft_putstr("OK\n");

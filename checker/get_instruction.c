@@ -184,49 +184,86 @@ void    rotate_b(t_data *m)
 	m->stack_b[i - 1] = tmp;
 }
 
-void    get_instruction(t_data *m)
+void 	check_valid_instr(t_data *m, char *inst)
 {
-	int ret;
-	char *line;
-
-	ret = 1;
-	if (is_sorted(m))
-		return ;
-	while (ret)
+	if (inst[0] == '\0')
 	{
-		ret = get_next_line(&line);
-		if (line[0] == 's' && line[1] == 'a')
-			swap_a(m);      
-		else if (line[0] == 's' && line[1] == 'b')
+		ft_putstr("Error\n");
+		exit (EXIT_FAILURE);
+	}
+	else
+	{
+		if (inst[0] == 's' && inst[1] == 'a')
+			swap_a(m);
+		else if (inst[0] == 's' && inst[1] == 'b')
 			swap_b(m);
-		else if (line[0] == 's' && line[1] == 's')
+		else if (inst[0] == 's' && inst[1] == 's')
 		{
 			swap_a(m);
 			swap_b(m);
 		}
-		else if (line[0] == 'p' && line[1] == 'a')
+		else if (inst[0] == 'p' && inst[1] == 'a')
 			push_a(m);
-		else if (line[0] == 'p' && line[1] == 'b')
+		else if (inst[0] == 'p' && inst[1] == 'b')
 			push_b(m);
-		else if (line[0] == 'r' && line[1] == 'a')
+		else if (inst[0] == 'r' && inst[1] == 'a')
 			rotate_a(m);
-		else if (line[0] == 'r' && line[1] == 'b')
+		else if (inst[0] == 'r' && inst[1] == 'b')
 			rotate_b(m);
-		else if (line[0] == 'r' && line[1] == 'r')
+		else if (inst[0] == 'r' && inst[1] == 'r')
 		{
 			rotate_a(m);
 			rotate_b(m);
 		}      
-		else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'a')
+		else if (inst[0] == 'r' && inst[1] == 'r' && inst[2] == 'a')
 			apply_rra(m);
-		else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'b')
+		else if (inst[0] == 'r' && inst[1] == 'r' && inst[2] == 'b')
 			apply_rrb(m);
-		else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'r')
+		else if (inst[0] == 'r' && inst[1] == 'r' && inst[2] == 'r')
 		{
 			apply_rrb(m);
 			apply_rra(m);
 		}
 		else
-			return ;
+		{
+			ft_putstr("Error\n");
+			exit (EXIT_FAILURE);
+		}
 	}
 }
+
+void    get_instruction(t_data *m)
+{
+	int  ret;
+	char *buff;
+	char *inst;
+	char *pfree;
+	int new;
+
+	ret = 0;
+	new = 1;
+	while ((ret = get_next_line(&buff)) > 0)
+	{
+		// printf ("buff --> |%s|\n", buff);
+		if (new)
+			inst = ft_strdup("");
+		if (buff[0] != '\0')
+		{
+			new = 0;
+			pfree = inst;
+			inst = ft_strjoin (inst, &buff[0]);
+			free (pfree);
+			check_valid_instr(m, inst);
+		}
+		else
+		{
+			ft_putstr("Error\n");
+			exit (EXIT_FAILURE);
+		}
+		free(inst);
+		inst = NULL;
+		free (buff);
+		new = 1;
+	}
+}
+

@@ -6,13 +6,11 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:33:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/01 18:27:34 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/02 16:19:45 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../checker/checker.h"
-
-/* function to swap data of two nodes a and b*/
 
 int sorted(int *dup)
 {
@@ -30,11 +28,11 @@ int sorted(int *dup)
 	return (1);
 }
 
-/* Bubble sort the given linked list */
+/* sort the dup to find the perfect pivot   */
 
 void     find_pivot(t_data *m)
 {
-	int i;	
+	int i;
 	int index;
 	int mid;
 
@@ -57,16 +55,15 @@ void     find_pivot(t_data *m)
             }
         }
     }
-	mid = m->dup[m->a_size / 2];		
 	i = 0;
 	while (i < m->a_size)
 	{
-		if (m->stack_a[i] == mid)
-			m->inst.pivot = i;
+		printf("dup_data --> %d\n", m->dup[i]);
 		i++;
 	}
-	printf ("mid : %d\n", mid);
-	printf ("index : %d\n", m->inst.pivot);
+	mid = m->dup[m->a_size / 2];
+	m->inst.pivot = mid;
+	printf ("mid : %d\n", m->inst.pivot);
 }
 
 /*
@@ -84,18 +81,39 @@ void	sort_b_move_a(t_data *m)
 
 void	apply_instruction(t_data *m)
 {
+	int i;
+	int index;
 	
+	i = 0;
+	while (1)
+	{
+		if (strcmp(m->inst.best_rot, "rra"))
+		{
+			apply_rra(m);
+			if (m->inst.index == m->a_size - 1)
+				m->inst.index = 0;
+			else
+				m->inst.index++;
+		}
+		else if (strcmp(m->inst.best_rot, "ra"))
+		{
+			rotate_a(m);
+			m->inst.index--;
+		}	
+	}
+	push_b(m);
 }
 
 /*
 ** find the best moves to push an element to the top
 */
+
 void	create_str(t_data *m, char *inst, int len)
 {
 	int i;
 
 	i = 0;
-	if (!(m->inst.best_rot = malloc(sizeof(char) * len + 1)));
+	if (!(m->inst.best_rot = malloc(sizeof(char) * len + 1)))
 		exit (EXIT_FAILURE);
 	while (inst[i])
 	{
@@ -128,9 +146,11 @@ void	push_to_b(t_data *m)
 		{
 			m->inst.index = i;
 			find_best_way_a_b(m);
+			printf ("%s\n", m->inst.best_rot);
 			apply_instruction(m);
 		}
-	}	
+		i++;
+	}
 }
 
 /*
@@ -142,8 +162,6 @@ void	global_sort(t_data *m)
 	int i;
 
 	i = 0;
-	// choose the pivot 
 	find_pivot(m);
 	push_to_b(m);
-	
 }
