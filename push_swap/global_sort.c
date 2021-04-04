@@ -6,11 +6,22 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:33:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/04 12:12:32 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/04 12:29:00 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../checker/checker.h"
+
+/*
+**
+*/
+
+void	move_from_b_to_a(t_data *m)
+{
+
+	
+}
+
 
 /*
 ** apply the best moves to push an element from a to b
@@ -116,7 +127,7 @@ void	push_to_b(t_data *m)
 
 	i = 0;
 	fill_dup(m);
-	while (m->dup[i] && i < m->dup_size)
+	while (i < m->dup_size)
 	{
 		if (m->dup[i] < m->inst.pivot)
 		{
@@ -139,5 +150,5 @@ void	global_sort(t_data *m)
 	i = 0;
 	find_pivot(m);
 	push_to_b(m);
-	// move_from_b_to_a(m);
+	move_from_b_to_a(m);
 }
