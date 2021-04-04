@@ -6,78 +6,36 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:33:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/02 16:19:45 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/04 12:12:32 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../checker/checker.h"
 
-int sorted(int *dup)
-{
-   	int i;
-	int len;
-
-	i = 0;
-	while (dup[i])
-	{
-		if (dup[i] < dup[i + 1])
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-/* sort the dup to find the perfect pivot   */
-
-void     find_pivot(t_data *m)
-{
-	int i;
-	int index;
-	int mid;
-
-	i = 0;
-	while (i < m->a_size)
-	{
-		m->dup[i] = m->stack_a[i];
-		i++;
-	}
-	i = 0;
-	for (i = 0; i < m->a_size; i++)
-    {
-        for (int j = 0; j < (m->a_size - i - 1); j++)
-        {
-            if (m->dup[j] > m->dup[j + 1])
-            {
-                int temp = m->dup[j];
-                m->dup[j] = m->dup[j + 1];
-                m->dup[j + 1] = temp;
-            }
-        }
-    }
-	i = 0;
-	while (i < m->a_size)
-	{
-		printf("dup_data --> %d\n", m->dup[i]);
-		i++;
-	}
-	mid = m->dup[m->a_size / 2];
-	m->inst.pivot = mid;
-	printf ("mid : %d\n", m->inst.pivot);
-}
-
-/*
-**  sort  stack_b elem and push it to stack a
-*/
-
-void	sort_b_move_a(t_data *m)
-{
-	
-}
-
 /*
 ** apply the best moves to push an element from a to b
 */
+
+int		find_pos(t_data *m)
+{
+	int i;
+	int index;
+
+	i = 0;
+	index = 0;
+	if (m->a_size == 0)
+		return (-1);
+	while (i < m->a_size) 
+	{
+		if (m->stack_a[i] == m->inst.elem)
+			break;
+		else
+			i++;	
+	}
+	// printf ("m->inst.elem : %d\n", m->inst.elem);
+	// printf ("m->inst.index %d\n", m->inst.index);
+	return (i);
+}
 
 void	apply_instruction(t_data *m)
 {
@@ -85,23 +43,25 @@ void	apply_instruction(t_data *m)
 	int index;
 	
 	i = 0;
-	while (1)
+	// printf ("--> %s\n", m->inst.best_rot);
+	while (m->inst.index != 0)
 	{
-		if (strcmp(m->inst.best_rot, "rra"))
+		m->inst.index = find_pos(m);
+		if (m->inst.index == 0)
+			push_b(m);
+		if (m->inst.best_rot[0] == 'r' && m->inst.best_rot[1] == 'a')
 		{
-			apply_rra(m);
-			if (m->inst.index == m->a_size - 1)
-				m->inst.index = 0;
-			else
-				m->inst.index++;
-		}
-		else if (strcmp(m->inst.best_rot, "ra"))
-		{
+			// printf ("ra++\n");
 			rotate_a(m);
-			m->inst.index--;
-		}	
+			// printf ("------\n");
+			// print(m);
+		}
+		else
+		{
+			// printf ("rra++\n");
+			apply_rra(m);
+		}
 	}
-	push_b(m);
 }
 
 /*
@@ -123,8 +83,23 @@ void	create_str(t_data *m, char *inst, int len)
 	m->inst.best_rot[i] = '\0';
 }
 
-void	find_best_way_a_b(t_data *m)
+void	find_best_way_a_b(t_data *m, int elem)
 {
+	int i;
+
+	i = 0;
+	while (i < m->a_size)
+	{
+		if (m->stack_a[i] == elem)
+		{
+			m->inst.index = i;
+			m->inst.elem = m->stack_a[i];
+			// printf ("elem : %d\n", m->inst.elem);
+			// printf ("index : %d\n", m->inst.index);
+			break;
+		}
+		i++;
+	}
 	if (m->inst.index > m->a_size / 2)
 		create_str(m ,"rra", 3);
 	else
@@ -140,14 +115,14 @@ void	push_to_b(t_data *m)
 	int i;
 
 	i = 0;
-	while (m->stack_a[i])
+	fill_dup(m);
+	while (m->dup[i] && i < m->dup_size)
 	{
-		if (m->stack_a[i] < m->inst.pivot)
+		if (m->dup[i] < m->inst.pivot)
 		{
-			m->inst.index = i;
-			find_best_way_a_b(m);
-			printf ("%s\n", m->inst.best_rot);
+			find_best_way_a_b(m, m->dup[i]);
 			apply_instruction(m);
+ 			// printf ("%s\n", m->inst.best_rot);
 		}
 		i++;
 	}
@@ -164,4 +139,5 @@ void	global_sort(t_data *m)
 	i = 0;
 	find_pivot(m);
 	push_to_b(m);
+	// move_from_b_to_a(m);
 }
