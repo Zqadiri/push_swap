@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 10:07:52 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/05 14:55:29 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/05 17:59:21 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void		fill_dup(t_data *m, int *stack, int size)
 
 void	find_best_way_b_a(t_data *m, int index)
 {
-	if (m->inst.index > m->a_size / 2)
+	if (m->inst.index > m->b_size / 2)
 		create_str(m ,"rrb", 3);
 	else
 		create_str(m, "rb", 2);
@@ -116,6 +116,9 @@ void	move_from_b_to_a(t_data *m)
 		find_best_way_b_a(m, m->inst.small);
 		while ((m->inst.small = find_small_one(m->stack_b, m->b_size)) != 0)
 		{
+			// printf ("{%d}\n", m->inst.small);
+			// if (m->inst.small == 0)
+			// 	break;
 			if (m->inst.best_rot[0] == 'r' && m->inst.best_rot[1] == 'b')
 				rotate_b(m);
 			else
@@ -123,5 +126,29 @@ void	move_from_b_to_a(t_data *m)
 		}
 		push_a(m);
 		rotate_a(m);
+	}
+}
+
+/*
+**
+*/
+
+void		move_big_elem_b(t_data *m)
+{
+	int i;
+	int j;
+	
+	int org_size;
+	
+	org_size = m->a_size;
+	i = 0;
+	while (i < org_size)
+	{
+		j = 0;
+		while (m->stack_a[j] == m->inst.start_value)
+			if (m->stack_a[j++] == m->inst.start_value)
+				return ;
+		push_b(m);
+		i++;
 	}
 }

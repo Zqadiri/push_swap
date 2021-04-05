@@ -44,14 +44,15 @@ void        error_code(int  code)
 
 void        init_struct(t_data *m, int argc )
 {
-	m->pos = 0;
+	m->pos = -1;
 	m->a_size = argc;
-	m->b_size = argc;
+	m->b_size = 0;
 	m->stack_b = NULL;
 	m->stack_a = NULL;
 	m->inst.index = -1;
 	m->inst.pivot = -1;
 	m->inst.best_rot = NULL;
+	m->inst.big = 0;
 }
 
 void		init_stacks(t_data *m, int argc)
@@ -84,6 +85,7 @@ void		print(t_data *m)
 	printf ("a_size : %d\n", m->a_size);
 	printf ("b_size : %d\n", m->b_size);
 	printf ("pivot : %d\n", m->inst.pivot);
+	printf ("start_value:%d\n", m->inst.start_value);
 	int i;
 
 	i = 0;
@@ -92,7 +94,8 @@ void		print(t_data *m)
 		printf("a_data --> %d\n", m->stack_a[i]);
 		i++;
 	}
-	printf ("********************************\n");
+	printf ("*********************************************\n");
+
 	i = 0;
 	while (i < m->b_size)
 	{

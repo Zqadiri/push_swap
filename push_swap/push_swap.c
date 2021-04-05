@@ -12,21 +12,21 @@
 
 # include "../checker/checker.h"
 
-int find_big_one(t_data *m)
+int find_big_one(int *stack, int size)
 {
 	int i;
 	int big;
 
 	i = 0;
 	big = 0;
-	if (m->a_size == 0)
-		return (-1);
-	int tmp = m->stack_a[i];
-	while (i < m->a_size) 
+	// if (size == 0)
+	// 	return (0);
+	int tmp = stack[i];
+	while (i < size) 
 	{
-		if (tmp < m->stack_a[i])
+		if (tmp < stack[i])
 		{
-			tmp = m->stack_a[i];
+			tmp = stack[i];
 			big = i;
 		}
 		i++;
@@ -41,8 +41,8 @@ int find_small_one(int	*stack, int size)
 
 	i = 0;
 	small = 0;
-	if (size == 0)
-		return (-1);
+	// if (size == 0)
+	// 	return (-1);
 	int tmp = stack[i];
 	while (i < size) 
 	{
@@ -64,7 +64,7 @@ void sort_stack_3(t_data *m)
 {
 	int big;
 
-	big = find_big_one(m);
+	big = find_big_one(m->stack_a, m->a_size);
 	if (m->a_size == 1)
 		return ;
 	if (m->a_size == 2)
@@ -123,8 +123,6 @@ void begin_sort(t_data *m)
 		return ;
 	if (m->a_size <= 3)
 		sort_stack_3(m);
-	if (m->a_size > 3 && m->a_size <= 5)
-		sort_stack_5(m);
 	else
 	{
 		global_sort(m);
@@ -154,11 +152,10 @@ int main(int argc, char *argv[])
 		count++;
 	}
 	begin_sort(&m);
-	printf ("*********************************************\n");
-	print (&m);
+	// printf ("*********************************************\n");
 	if (is_sorted(&m))
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
 	return (EXIT_SUCCESS);
-}
+}    

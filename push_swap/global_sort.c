@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:33:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/05 11:23:17 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/05 17:59:48 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ void	find_best_way_a_b(t_data *m, int elem)
 		{
 			m->inst.index = i;
 			m->inst.elem = m->stack_a[i];
-			// printf ("elem : %d\n", m->inst.elem);
-			// printf ("index : %d\n", m->inst.index);
 			break;
 		}
 		i++;
@@ -112,7 +110,7 @@ void	push_to_b(t_data *m)
 	fill_dup(m, m->stack_a, m->a_size);
 	while (i < m->dup_size)
 	{
-		if (m->dup[i] < m->inst.pivot)
+		if (m->dup[i] <= m->inst.pivot)
 		{
 			find_best_way_a_b(m, m->dup[i]);
 			apply_instruction(m);
@@ -133,4 +131,8 @@ void	global_sort(t_data *m)
 	find_pivot(m);
 	push_to_b(m);
 	move_from_b_to_a(m);
+	move_big_elem_b(m);
+
+	move_from_b_to_a(m);
+	// print (m);
 }

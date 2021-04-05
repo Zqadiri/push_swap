@@ -32,6 +32,7 @@ void 	apply_rrb(t_data *m)
 		i--;
 	}
 	m->stack_b[0] = tmp;
+	printf ("rrb\n");
 }
 
 /*
@@ -54,6 +55,7 @@ void 	apply_rra(t_data *m)
 		i--;
 	}
 	m->stack_a[0] = tmp;
+	printf("rra\n");
 }
 
 /*
@@ -73,6 +75,7 @@ void    swap_a(t_data *m)
 		m->stack_a[0] = m->stack_a[1];
 		m->stack_a[1] = tmp;
 	}
+	printf ("sa\n");
 }
 
 /*
@@ -94,6 +97,7 @@ void    swap_b(t_data *m)
 		m->stack_b[0] = m->stack_b[1];
 		m->stack_b[1] = tmp;
 	}
+	printf ("sb\n");
 }
 
 /*
@@ -116,6 +120,7 @@ void    push_a(t_data *m)
 		m->stack_b[i - 1] = m->stack_b[i];
 	m->a_size++;
 	m->b_size--;
+	printf ("pa\n");
 }
 
 /*
@@ -123,6 +128,7 @@ void    push_a(t_data *m)
 **  and put it at the top of b. Do nothing if a is empty.
 */
 
+//functional programming
 void    push_b(t_data *m)
 {
 	int i;
@@ -134,10 +140,11 @@ void    push_b(t_data *m)
 		m->stack_b[i + 1] = m->stack_b[i];
 	m->stack_b[0] = m->stack_a[0];
 	i = 0;
-	while (i++ <= m->a_size)
-		m->stack_a[i - 1] = m->stack_a[i];
+	while (++i < m->a_size)
+		m->stack_a[i - 1] = m->stack_a[i];		
 	m->b_size++;
 	m->a_size--;
+	printf ("pb\n");
 }
 
 /*
@@ -160,6 +167,7 @@ void    rotate_a(t_data *m)
 		i++;
 	}
 	m->stack_a[i - 1] = tmp;
+	printf ("ra\n");
 }
 
 /*
@@ -182,6 +190,7 @@ void    rotate_b(t_data *m)
 		i++;
 	}
 	m->stack_b[i - 1] = tmp;
+	printf ("rb\n");
 }
 
 void 	check_valid_instr(t_data *m, char *inst)
