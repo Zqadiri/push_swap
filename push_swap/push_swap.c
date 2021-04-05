@@ -34,21 +34,21 @@ int find_big_one(t_data *m)
 	return (big);
 }
 
-int find_small_one(t_data *m)
+int find_small_one(int	*stack, int size)
 {
 	int i;
 	int small;
 
 	i = 0;
 	small = 0;
-	if (m->a_size == 0)
+	if (size == 0)
 		return (-1);
-	int tmp = m->stack_a[i];
-	while (i < m->a_size) 
+	int tmp = stack[i];
+	while (i < size) 
 	{
-		if (tmp > m->stack_a[i])
+		if (tmp > stack[i])
 		{
-			tmp = m->stack_a[i];
+			tmp = stack[i];
 			small = i;
 		}
 		i++;
@@ -71,27 +71,17 @@ void sort_stack_3(t_data *m)
 	{
 		if (m->stack_a[0] > m->stack_a[1])
 		{
-			printf ("rra\n");
 			apply_rra(m);
 		}
 	}
 	else if (m->a_size == 3)
 	{
 		if (big == 0)
-		{
-			printf ("ra\n");
 			rotate_a(m);
-		}
 		if (big == 1)
-		{
-			printf ("rra\n");
 			apply_rra(m);
-		}
 		if (m->stack_a[0] > m->stack_a[1])
-		{
-			printf ("sa\n");
 			swap_a(m);
-		}
 	}
 }
 
@@ -100,7 +90,7 @@ void sort_stack_5(t_data *m)
 	int small;
 	int minimizing;
 
-	small = find_small_one(m);
+	small = find_small_one(m->stack_a, m->a_size);
 	minimizing = 2;
 	if (m->a_size == 4)
 	{
@@ -108,26 +98,22 @@ void sort_stack_5(t_data *m)
 		{
 			while (small != 0)
 			{
-				printf ("rra\n");
 				apply_rra (m);
-				small = find_small_one(m);
+				small = find_small_one(m->stack_a, m->a_size);
 			}
 		}
 		else
 		{
 			while (small != 0)
 			{
-				printf ("ra\n");
 				rotate_a (m);
-				small = find_small_one(m);
+				small = find_small_one(m->stack_a, m->a_size);
 			}
 			
 		}
 		push_b(m);
-		printf ("pb\n");
 		sort_stack_3 (m);
 		push_a(m);
-		printf ("pa\n");
 	}
 }
 
@@ -168,7 +154,7 @@ int main(int argc, char *argv[])
 		count++;
 	}
 	begin_sort(&m);
-	// printf ("*********************************************\n");
+	printf ("*********************************************\n");
 	print (&m);
 	if (is_sorted(&m))
 		ft_putstr("OK\n");

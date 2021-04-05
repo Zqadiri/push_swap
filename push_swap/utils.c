@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 10:07:52 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/04 11:53:03 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/05 14:55:29 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,67 @@ void     find_pivot(t_data *m)
 	m->dup = NULL;
 }
 
-void		fill_dup(t_data *m)
+void		fill_dup(t_data *m, int *stack, int size)
 {
 	int i;
 
 	i = 0;
-	if (!(m->dup = malloc(sizeof(int) * (m->a_size))))
-		exit(EXIT_FAILURE);
-	m->dup_size = m->a_size;
-	while (i < m->a_size)
+	if (m->dup != NULL)
 	{
-		m->dup[i] = m->stack_a[i];
-		// printf("dup_data --> %d\n", m->dup[i]);
+		free (m->dup);
+		m->dup = NULL;
+	}
+	if (!(m->dup = malloc(sizeof(int) * (size))))
+		exit(EXIT_FAILURE);
+	m->dup_size = size;
+	while (i < size)
+	{
+		m->dup[i] = stack[i];
 		i++;
+	}
+}
+
+/*
+** take the smallest one from stack_b -> push it back to 
+** stack_a -> rotate_a -> do it again (m->size_b == 0)
+*/
+
+void	find_best_way_b_a(t_data *m, int index)
+{
+	if (m->inst.index > m->a_size / 2)
+		create_str(m ,"rrb", 3);
+	else
+		create_str(m, "rb", 2);
+}
+
+void	move_from_b_to_a(t_data *m)
+{
+	int done;
+	
+	done = 1;
+	m->inst.start_value = m->stack_b[find_small_one(m->stack_b, m->b_size)];
+	while (done)
+	{
+		m->inst.small = find_small_one(m->stack_b, m->b_size);
+		if (m->inst.small == 0)
+		{
+			push_a(m);
+			rotate_a(m);
+		}
+		if (m->inst.small == 0 && m->b_size == 0)
+		{
+			push_a(m);
+			break;
+		} 
+		find_best_way_b_a(m, m->inst.small);
+		while ((m->inst.small = find_small_one(m->stack_b, m->b_size)) != 0)
+		{
+			if (m->inst.best_rot[0] == 'r' && m->inst.best_rot[1] == 'b')
+				rotate_b(m);
+			else
+				apply_rrb(m);
+		}
+		push_a(m);
+		rotate_a(m);
 	}
 }

@@ -6,45 +6,35 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:33:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/04 12:29:00 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/05 11:23:17 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../checker/checker.h"
 
-/*
-**
-*/
-
-void	move_from_b_to_a(t_data *m)
-{
-
-	
-}
 
 
 /*
 ** apply the best moves to push an element from a to b
 */
 
-int		find_pos(t_data *m)
+int		find_pos(int *stack, int size, int elem)
 {
 	int i;
 	int index;
 
 	i = 0;
 	index = 0;
-	if (m->a_size == 0)
+	if (size == 0)
 		return (-1);
-	while (i < m->a_size) 
+
+	while (i < size) 
 	{
-		if (m->stack_a[i] == m->inst.elem)
+		if (stack[i] == elem)
 			break;
 		else
 			i++;	
 	}
-	// printf ("m->inst.elem : %d\n", m->inst.elem);
-	// printf ("m->inst.index %d\n", m->inst.index);
 	return (i);
 }
 
@@ -54,24 +44,17 @@ void	apply_instruction(t_data *m)
 	int index;
 	
 	i = 0;
-	// printf ("--> %s\n", m->inst.best_rot);
+	if (m->inst.index == 0)
+		push_b(m);
 	while (m->inst.index != 0)
 	{
-		m->inst.index = find_pos(m);
+		m->inst.index = find_pos(m->stack_a, m->a_size, m->inst.elem);
 		if (m->inst.index == 0)
 			push_b(m);
 		if (m->inst.best_rot[0] == 'r' && m->inst.best_rot[1] == 'a')
-		{
-			// printf ("ra++\n");
 			rotate_a(m);
-			// printf ("------\n");
-			// print(m);
-		}
 		else
-		{
-			// printf ("rra++\n");
 			apply_rra(m);
-		}
 	}
 }
 
@@ -126,14 +109,13 @@ void	push_to_b(t_data *m)
 	int i;
 
 	i = 0;
-	fill_dup(m);
+	fill_dup(m, m->stack_a, m->a_size);
 	while (i < m->dup_size)
 	{
 		if (m->dup[i] < m->inst.pivot)
 		{
 			find_best_way_a_b(m, m->dup[i]);
 			apply_instruction(m);
- 			// printf ("%s\n", m->inst.best_rot);
 		}
 		i++;
 	}
