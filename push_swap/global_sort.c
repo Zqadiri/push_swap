@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:33:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/05 17:59:48 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/21 11:04:44 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int		find_pos(int *stack, int size, int elem)
 void	apply_instruction(t_data *m)
 {
 	int i;
-	int index;
 	
 	i = 0;
 	if (m->inst.index == 0)

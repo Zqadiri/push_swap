@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 10:07:52 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/05 17:59:21 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/21 11:05:14 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int sorted(int *dup)
 {
    	int i;
-	int len;
 
 	i = 0;
 	while (dup[i])
@@ -33,7 +32,6 @@ int sorted(int *dup)
 void     find_pivot(t_data *m)
 {
 	int i;
-	int index;
 	int mid;
 
 	i = 0;
@@ -88,6 +86,7 @@ void		fill_dup(t_data *m, int *stack, int size)
 
 void	find_best_way_b_a(t_data *m, int index)
 {
+	(void)index;
 	if (m->inst.index > m->b_size / 2)
 		create_str(m ,"rrb", 3);
 	else
@@ -151,4 +150,31 @@ void		move_big_elem_b(t_data *m)
 		push_b(m);
 		i++;
 	}
+}
+
+char	*ft_strdup(const char *src)
+{
+	int		size;
+	char	*p;
+	int		i;
+
+	i = 0;
+	size = 0;
+	while (src[i] != '\0')
+	{
+		i++;
+		size++;
+	}
+	size++;
+	p = (char *)malloc(size * sizeof(char));
+	if (p == NULL)
+		return (NULL);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		*(p + i) = src[i];
+		i++;
+	}
+	*(p + i) = '\0';
+	return (p);
 }

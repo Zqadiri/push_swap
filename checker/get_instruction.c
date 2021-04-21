@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "checker.h"
+# include "../includes/checker.h"
 
 /*
 ** shit down all elements of stack b by 1. The last element
@@ -241,6 +241,73 @@ void 	check_valid_instr(t_data *m, char *inst)
 	}
 }
 
+size_t		ft_strlen(const char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	int			i;
+	int			j;
+	char		*p;
+	int			size_s1;
+	int			size_s2;
+
+	i = -1;
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	size_s1 = ft_strlen((char *)s1);
+	size_s2 = ft_strlen((char *)s2);
+	p = malloc((size_s1 + size_s2 + 1) * sizeof(char));
+	if (p)
+	{
+		while (s1[++i] != '\0')
+			p[i] = s1[i];
+		while (s2[j])
+			p[i++] = s2[j++];
+		p[i] = '\0';
+		return (p);
+	}
+	return (NULL);
+}
+
+char	*ft_strdup(const char *src)
+{
+	int		size;
+	char	*p;
+	int		i;
+
+	i = 0;
+	size = 0;
+	while (src[i] != '\0')
+	{
+		i++;
+		size++;
+	}
+	size++;
+	p = (char *)malloc(size * sizeof(char));
+	if (p == NULL)
+		return (NULL);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		*(p + i) = src[i];
+		i++;
+	}
+	*(p + i) = '\0';
+	return (p);
+}
+
+
 void    get_instruction(t_data *m)
 {
 	int  ret;
@@ -253,7 +320,6 @@ void    get_instruction(t_data *m)
 	new = 1;
 	while ((ret = get_next_line(&buff)) > 0)
 	{
-		// printf ("buff --> |%s|\n", buff);
 		if (new)
 			inst = ft_strdup("");
 		if (buff[0] != '\0')

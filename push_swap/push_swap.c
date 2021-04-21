@@ -12,6 +12,13 @@
 
 # include "../checker/checker.h"
 
+static int  check_overflow(long digit)
+{
+	if (digit > INT32_MAX || digit < INT32_MIN)
+		return (0);
+	return (1);
+}
+
 int find_big_one(int *stack, int size)
 {
 	int i;

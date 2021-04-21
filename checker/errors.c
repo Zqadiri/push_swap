@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "checker.h"
+# include "../includes/checker.h"
+
 
 void	ft_putchar(char c) {
 	write(1, &c, 1);
@@ -77,37 +78,6 @@ void		init_stacks(t_data *m, int argc)
 		m->dup[i] = 0;
 		i++;
 	}
-}
-
-
-void		print(t_data *m)
-{
-	printf ("a_size : %d\n", m->a_size);
-	printf ("b_size : %d\n", m->b_size);
-	printf ("pivot : %d\n", m->inst.pivot);
-	printf ("start_value:%d\n", m->inst.start_value);
-	int i;
-
-	i = 0;
-	while (i < m->a_size)
-	{
-		printf("a_data --> %d\n", m->stack_a[i]);
-		i++;
-	}
-	printf ("*********************************************\n");
-
-	i = 0;
-	while (i < m->b_size)
-	{
-		printf("b_data --> %d\n", m->stack_b[i]);
-		i++;
-	}
-	// i = 0;
-	// while (i < m->a_size)
-	// {
-	// 	printf("dup_data --> %d\n", m->dup[i]);
-	// 	i++;
-	// }
 }
 
 int		is_sorted(t_data *m)
