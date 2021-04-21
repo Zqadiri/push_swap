@@ -38,6 +38,7 @@ void    check_duplicate(t_data *m)
 		}
 		i++;
 	}
+	
 }
 
 /*
