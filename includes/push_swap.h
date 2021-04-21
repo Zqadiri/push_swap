@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:39:00 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/21 11:50:19 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/21 14:29:59 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void    	check_duplicate(t_data *data);
 void        init_struct(t_data *data, int argc);
 void		init_stacks(t_data *data, int argc);
 int			is_sorted(t_data *m);
+void        error_code(int  code);
 
 /*
 ** Sorting
@@ -84,5 +85,6 @@ void		find_best_way_a_b(t_data *m, int elem);
 void		move_big_elem_b(t_data *m);
 int 		find_big_one(int *stack, int size);
 void		reverse_move_from_b_to_a(t_data *m);
+void		ft_putstr(char const *s);
 
 #endif

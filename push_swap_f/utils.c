@@ -6,11 +6,29 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 10:07:52 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/21 11:05:14 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/21 14:21:44 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../checker/checker.h"
+# include "../includes/push_swap.h"
+
+void	ft_putchar(char c) {
+	write(1, &c, 1);
+}
+
+void	ft_putstr(char const *s)
+{
+	int i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar(s[i]);
+		i++;
+	} 
+}
 
 int sorted(int *dup)
 {

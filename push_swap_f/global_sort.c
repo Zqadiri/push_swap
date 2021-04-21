@@ -6,11 +6,11 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:33:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/21 13:59:34 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/21 14:17:30 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/checker.h"
+# include "../includes/push_swap.h"
 
 
 
