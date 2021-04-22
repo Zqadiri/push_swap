@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:27:21 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/21 15:00:11 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/22 16:28:33 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,16 +124,11 @@ void    check_duplicate(t_data *m)
 	i = 0;
 	while (i < m->a_size)
 	{
-		j = 0;
-		while (j < m->pos)
+		j = i + 1;
+		while (j < m->a_size)
 		{
-			if (i != j)
-			{
-				if (m->stack_a[i] == m->stack_a[j])
-				{	
-					error_code(3);
-				}		
-			}
+			if (m->stack_a[i] == m->stack_a[j])
+				error_code(3);
 			j++;
 		}
 		i++;

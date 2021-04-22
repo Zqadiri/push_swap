@@ -77,4 +77,5 @@ void        error_code(int  code);
 int 		get_next_line(char **line);
 int			is_sorted(t_data *m);
 
+// ./push_swap 5 4 1 2
 #endif

@@ -6,7 +6,7 @@
 #    By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/21 10:14:46 by zqadiri           #+#    #+#              #
-#    Updated: 2021/04/22 09:34:19 by zqadiri          ###   ########.fr        #
+#    Updated: 2021/04/22 16:13:23 by zqadiri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME_PS = 	push_swap
 
 NAME_CK = 	checker
 
-CMPL = 		-Wall -Werror -Wextra -fsanitize=address
+CMPL = 		-Wall -Werror -Wextra 
 
 SRCS_CK = 	./checker_f/checker.c\
 			./checker_f/errors.c\

@@ -83,7 +83,6 @@ void sort_stack_3(t_data *m)
 
 void	sort_stack_5(t_data *m)
 {
-	// printf ("in");
 	int small;
 
 	while (m->b_size < 2)
@@ -93,8 +92,7 @@ void	sort_stack_5(t_data *m)
 			push_b(m);
 		else
 		{
-			find_best_way_a_b(m, small);
-			printf ("%s\n", m->inst.best_rot);
+			find_best_way_a_b(m, m->stack_a[small]);
 			while ((small = find_small_one(m->stack_a, m->a_size)) != 0)
 			{
 				if (m->inst.best_rot[0] == 'r' && m->inst.best_rot[1] == 'a')
@@ -147,9 +145,11 @@ int main(int argc, char *argv[])
 	while (argv[count])
 	{
 		is_valid(&m, argv[count]);
-		check_duplicate(&m);
 		count++;
 	}
+	check_duplicate(&m);
+	if (is_sorted(&m))
+		exit(EXIT_SUCCESS);
 	begin_sort(&m);
 	if (is_sorted(&m))
 		ft_putstr("OK\n");
