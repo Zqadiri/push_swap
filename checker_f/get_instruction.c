@@ -65,9 +65,10 @@ void    swap_a(t_data *m)
 {
 	int  tmp;
 
-	if (m->a_size < 2)
-		exit(EXIT_SUCCESS);
-	else
+	// if (m->a_size < 2)
+	// 	exit(EXIT_SUCCESS);
+	// else
+	if (m->a_size > 1)
 	{
 		tmp = m->stack_a[0];
 		m->stack_a[0] = m->stack_a[1];
@@ -84,11 +85,12 @@ void    swap_b(t_data *m)
 {
 	int  tmp;
 
-	if (m->stack_b == NULL)
-		exit (EXIT_SUCCESS);
-	if (m->b_size < 2)
-		exit(EXIT_SUCCESS);
-	else
+	// if (m->stack_b == NULL)
+	// 	exit (EXIT_SUCCESS);
+	// if (m->b_size < 2)
+	// 	exit(EXIT_SUCCESS);
+	//else
+	if (m->b_size > 1)
 	{
 		tmp = m->stack_b[0];
 		m->stack_b[0] = m->stack_b[1];
@@ -194,33 +196,33 @@ void 	check_valid_instr(t_data *m, char *inst)
 	}
 	else
 	{
-		if (inst[0] == 's' && inst[1] == 'a')
+		if (inst[0] == 's' && inst[1] == 'a' && inst[2] == '\0')
 			swap_a(m);
-		else if (inst[0] == 's' && inst[1] == 'b')
+		else if (inst[0] == 's' && inst[1] == 'b' && inst[2] == '\0')
 			swap_b(m);
-		else if (inst[0] == 's' && inst[1] == 's')
+		else if (inst[0] == 's' && inst[1] == 's' && inst[2] == '\0')
 		{
 			swap_a(m);
 			swap_b(m);
 		}
-		else if (inst[0] == 'p' && inst[1] == 'a')
+		else if (inst[0] == 'p' && inst[1] == 'a' && inst[2] == '\0')
 			push_a(m);
-		else if (inst[0] == 'p' && inst[1] == 'b')
+		else if (inst[0] == 'p' && inst[1] == 'b' && inst[2] == '\0')
 			push_b(m);
-		else if (inst[0] == 'r' && inst[1] == 'a')
+		else if (inst[0] == 'r' && inst[1] == 'a' && inst[2] == '\0')
 			rotate_a(m);
-		else if (inst[0] == 'r' && inst[1] == 'b')
+		else if (inst[0] == 'r' && inst[1] == 'b' && inst[2] == '\0')
 			rotate_b(m);
-		else if (inst[0] == 'r' && inst[1] == 'r')
+		else if (inst[0] == 'r' && inst[1] == 'r' && inst[2] == '\0')
 		{
 			rotate_a(m);
 			rotate_b(m);
 		}      
-		else if (inst[0] == 'r' && inst[1] == 'r' && inst[2] == 'a')
+		else if (inst[0] == 'r' && inst[1] == 'r' && inst[2] == 'a' && inst[3] == '\0')
 			apply_rra(m);
-		else if (inst[0] == 'r' && inst[1] == 'r' && inst[2] == 'b')
+		else if (inst[0] == 'r' && inst[1] == 'r' && inst[2] == 'b' && inst[3] == '\0')
 			apply_rrb(m);
-		else if (inst[0] == 'r' && inst[1] == 'r' && inst[2] == 'r')
+		else if (inst[0] == 'r' && inst[1] == 'r' && inst[2] == 'r' && inst[3] == '\0')
 		{
 			apply_rrb(m);
 			apply_rra(m);
@@ -332,5 +334,8 @@ void    get_instruction(t_data *m)
 		free (buff);
 		new = 1;
 	}
+	if(buff[0])
+		check_valid_instr(m, buff);
+
 }
 

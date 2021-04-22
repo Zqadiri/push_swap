@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:33:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/21 14:17:30 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/21 15:14:09 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,4 @@ void	global_sort(t_data *m)
 	move_big_elem_b(m);
 
 	move_from_b_to_a(m);
-	// print (m);
 }

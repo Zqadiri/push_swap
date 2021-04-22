@@ -87,6 +87,8 @@ int		is_sorted(t_data *m)
 
 	i = 0;
 	len = m->a_size;
+	if (m->b_size != 0)
+		return (0);
 	while (i < len - 1)
 	{
 		if (m->stack_a[i] < m->stack_a[i + 1])
@@ -130,9 +132,11 @@ int			get_next_line(char **line)
 	*line[0] = '\0';
 	while ((flag = read(0, buffer, 1)) > 0)
 	{
+		buffer[1] = 0;
 		if (buffer[0] == '\n')
 			break ;
 		*line = ft_join(*line, buffer[0]);
+
 	}
 	free(buffer);
 	return (flag);

@@ -12,8 +12,6 @@
 
 # include "../includes/push_swap.h"
 
-
-
 int find_big_one(int *stack, int size)
 {
 	int i;
@@ -41,8 +39,6 @@ int find_small_one(int	*stack, int size)
 
 	i = 0;
 	small = 0;
-	// if (size == 0)
-	// 	return (-1);
 	int tmp = stack[i];
 	while (i < size) 
 	{
@@ -85,36 +81,35 @@ void sort_stack_3(t_data *m)
 	}
 }
 
-void sort_stack_5(t_data *m)
+void	sort_stack_5(t_data *m)
 {
+	// printf ("in");
 	int small;
-	int minimizing;
 
-	small = find_small_one(m->stack_a, m->a_size);
-	minimizing = 2;
-	if (m->a_size == 4)
+	while (m->b_size < 2)
 	{
-		if (small > minimizing)
-		{
-			while (small != 0)
-			{
-				apply_rra (m);
-				small = find_small_one(m->stack_a, m->a_size);
-			}
-		}
+ 		small = find_small_one(m->stack_a, m->a_size);
+		if (small == 0)
+			push_b(m);
 		else
 		{
-			while (small != 0)
+			find_best_way_a_b(m, small);
+			printf ("%s\n", m->inst.best_rot);
+			while ((small = find_small_one(m->stack_a, m->a_size)) != 0)
 			{
-				rotate_a (m);
-				small = find_small_one(m->stack_a, m->a_size);
+				if (m->inst.best_rot[0] == 'r' && m->inst.best_rot[1] == 'a')
+					rotate_a(m);
+				else
+					apply_rra(m);
 			}
-			
+			push_b(m);
 		}
-		push_b(m);
-		sort_stack_3 (m);
-		push_a(m);
 	}
+	sort_stack_3(m);
+	if (m->stack_b[0] < m->stack_b[1])
+		swap_b(m);
+	while (m->b_size != 0)
+		push_a(m);
 }
 
 void begin_sort(t_data *m)
@@ -123,6 +118,8 @@ void begin_sort(t_data *m)
 		return ;
 	if (m->a_size <= 3)
 		sort_stack_3(m);
+	if (m->a_size == 5)
+		sort_stack_5(m);
 	else
 	{
 		global_sort(m);
@@ -135,6 +132,8 @@ int main(int argc, char *argv[])
 	int count;
 
 	count = 1;
+	if (argc == 2)
+		return (EXIT_SUCCESS);
 	if (argc-- < 2)
 		exit (EXIT_FAILURE);
 	init_struct(&m, argc);
@@ -152,7 +151,6 @@ int main(int argc, char *argv[])
 		count++;
 	}
 	begin_sort(&m);
-	// printf ("*********************************************\n");
 	if (is_sorted(&m))
 		ft_putstr("OK\n");
 	else
