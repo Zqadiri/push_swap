@@ -118,10 +118,10 @@ void begin_sort(t_data *m)
 		sort_stack_3(m);
 	if (m->a_size == 5)
 		sort_stack_5(m);
-	else
-	{
-		global_sort(m);
-	} 
+	if (m->a_size <= 100)
+		sort_stack_100(m);
+	if (m->a_size < 500)
+		sort_stack_500(m);
 }
 
 int main(int argc, char *argv[])

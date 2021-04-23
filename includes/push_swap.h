@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:39:00 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/21 15:03:03 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/23 11:29:34 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void        error_code(int  code);
 ** Sorting
 */
 
-void		global_sort(t_data *m);
+void		sort_stack_100(t_data *m);
 void     	find_pivot(t_data *m);
 void		sort_stack_3(t_data *m);
 void 		sort_stack_5(t_data *m);

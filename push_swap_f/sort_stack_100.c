@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   global_sort.c                                      :+:      :+:    :+:   */
+/*   sort_stack_100.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:33:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/22 16:37:38 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/23 11:29:21 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/push_swap.h"
-
-
 
 /*
 ** apply the best moves to push an element from a to b
@@ -123,15 +121,11 @@ void	push_to_b(t_data *m)
 ** main function
 */
 
-void	global_sort(t_data *m)
+void	sort_stack_100(t_data *m)
 {
-	int i;
-
-	i = 0;
 	find_pivot(m);
 	push_to_b(m);
 	move_from_b_to_a(m);
 	move_big_elem_b(m);
-
 	move_from_b_to_a(m);
 }

@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 10:07:52 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/21 14:21:44 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/23 11:14:39 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,19 +102,32 @@ void		fill_dup(t_data *m, int *stack, int size)
 ** stack_a -> rotate_a -> do it again (m->size_b == 0)
 */
 
-void	find_best_way_b_a(t_data *m, int index)
+void	find_best_way_b_a(t_data *m, int elem)
 {
-	(void)index;
-	if (m->inst.index > m->b_size / 2)
+	int i;
+
+	i = 0;
+	while (i < m->b_size)
+	{
+		if (m->stack_b[i] == elem)
+		{
+			m->inst.index = i;
+			m->inst.elem = m->stack_b[i];
+			break;
+		}
+		i++;
+	}
+	if (m->inst.index >= m->b_size / 2)
 		create_str(m ,"rrb", 3);
 	else
 		create_str(m, "rb", 2);
 }
 
+
 void	move_from_b_to_a(t_data *m)
 {
 	int done;
-	
+	 
 	done = 1;
 	m->inst.start_value = m->stack_b[find_small_one(m->stack_b, m->b_size)];
 	while (done)
@@ -129,8 +142,10 @@ void	move_from_b_to_a(t_data *m)
 		{
 			push_a(m);
 			break;
-		} 
-		find_best_way_b_a(m, m->inst.small);
+		}
+		find_best_way_b_a(m, m->stack_b[m->inst.small]);
+		// find_best_way_b_a(m, m->inst.small);
+
 		while ((m->inst.small = find_small_one(m->stack_b, m->b_size)) != 0)
 		{
 			// printf ("{%d}\n", m->inst.small);
