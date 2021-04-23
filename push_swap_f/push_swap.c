@@ -116,11 +116,11 @@ void begin_sort(t_data *m)
 		return ;
 	if (m->a_size <= 3)
 		sort_stack_3(m);
-	if (m->a_size == 5)
+	else if (m->a_size == 5)
 		sort_stack_5(m);
-	if (m->a_size <= 100)
+	else if (m->a_size <= 100)
 		sort_stack_100(m);
-	if (m->a_size < 500)
+	else
 		sort_stack_500(m);
 }
 
@@ -151,6 +151,21 @@ int main(int argc, char *argv[])
 	if (is_sorted(&m))
 		exit(EXIT_SUCCESS);
 	begin_sort(&m);
+	// int i = 0;
+	// printf ("a_size : [%d]\n", m.a_size);
+	// while (i < m.a_size)
+	// {
+	// 	printf ("%d\n", m.stack_a[i]);
+	// 	i++;
+	// }
+	// printf ("**************\n");
+	// i = 0;
+	// printf ("b_size :[%d]\n", m.b_size);
+	// while (i < m.b_size)
+	// {
+	// 	printf ("%d\n", m.stack_b[i]);
+	// 	i++;
+	// }
 	if (is_sorted(&m))
 		ft_putstr("OK\n");
 	else

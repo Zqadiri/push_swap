@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:39:00 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/23 11:29:34 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/23 12:26:48 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void        error_code(int  code);
 ** Sorting
 */
 
+void    	sort_stack_500(t_data *m);
 void		sort_stack_100(t_data *m);
 void     	find_pivot(t_data *m);
 void		sort_stack_3(t_data *m);
@@ -86,5 +87,6 @@ void		move_big_elem_b(t_data *m);
 int 		find_big_one(int *stack, int size);
 void		reverse_move_from_b_to_a(t_data *m);
 void		ft_putstr(char const *s);
+void		apply_instruction(t_data *m);
 
 #endif
