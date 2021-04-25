@@ -10,19 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/checker.h"
+#include "../includes/checker.h"
 
-static int		isdigit(int c)
+static	int	len(char *arg)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
-		return (0);
-}
-
-static int len(char *arg)
-{
-	int i;
+	int	i;
 
 	i = 0;
 	while (arg[i] >= '0' && arg[i] <= '9')
@@ -34,10 +26,10 @@ static int len(char *arg)
 ** Check duplicate
 */
 
-void    check_duplicate(t_data *m)
+void	check_duplicate(t_data *m)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < m->a_size)
@@ -54,28 +46,33 @@ void    check_duplicate(t_data *m)
 }
 
 /*
-** Check Overflow 
-*/
-
-static int  check_overflow(long digit)
-{
-	if (digit > INT32_MAX || digit < INT32_MIN)
-		return (0);
-	return (1);
-}
-
-/*
 ** atoi
 */
 
-void    is_valid(t_data *m, char *arg)
+long	long	get_number(char *arg, int i)
 {
-	long long digit;
-	int i;
-	int signe;
+	long long	digit;
 
-	i = 0;
 	digit = 0;
+	while (arg[i] != '\0')
+	{
+		if (arg[i] >= '0' && arg[i] <= '9')
+			digit = (digit * 10) + arg[i] - '0';
+		else
+			error_code(1);
+		i++;
+	}
+	return (digit);
+}
+
+void	is_valid(t_data *m, char *arg)
+{
+	int			i;
+	int			signe;
+	long long	digit;
+
+	digit = 0;
+	i = 0;
 	signe = 1;
 	if (len(arg) > 17)
 		error_code (2);
@@ -90,36 +87,21 @@ void    is_valid(t_data *m, char *arg)
 		if (!(isdigit(arg[++i])))
 			error_code(1);
 	}
-	while (arg[i] != '\0')
-	{
-		if (arg[i] >= '0' && arg[i] <= '9')
-			digit = (digit * 10) + arg[i] - '0';
-		else
-			error_code(1);
-		i++;
-	}
+	digit = get_number(arg, i);
 	if (!(check_overflow(digit * signe)))
 		error_code (2);
-	m->pos++;
-	m->stack_a[m->pos] = (int)digit * signe;
+	m->stack_a[++m->pos] = (int)digit * signe;
 }
 
-
-int    main(int argc, char **argv)
+int	main(int argc, char *argv[])
 {
-	t_data 	m;
+	t_data	m;
 	int		count;
 
 	count = 1;
 	if (argc-- < 2)
 		return (EXIT_SUCCESS);
 	init_struct(&m, argc);
-	if (!(m.stack_a = malloc(sizeof(int) * (argc))))
-		exit(EXIT_FAILURE);
-	if (!(m.stack_b = malloc(sizeof(int) * (argc))))
-		exit(EXIT_FAILURE);
-	if (!(m.dup = malloc(sizeof(int) * (argc))))
-		exit(EXIT_FAILURE);
 	init_stacks(&m, argc);
 	while (argv[count])
 	{
@@ -128,19 +110,6 @@ int    main(int argc, char **argv)
 	}
 	check_duplicate(&m);
 	get_instruction(&m);
-	// int i = 0;
-	// while (i < m.a_size)
-	// {
-	// 	printf("%d\n", m.stack_a[i]);
-	// 	i++;
-	// }
-	// printf ("**************\n");
-	// i = 0;
-	// while (i < m.b_size)
-	// {
-	// 	printf("%d\n", m.stack_b[i]);
-	// 	i++;
-	// }
 	if (is_sorted(&m))
 		ft_putstr("OK\n");
 	else

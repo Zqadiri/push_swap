@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 10:49:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/25 10:53:37 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/25 13:34:14 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,36 @@ void	error_code(int code)
 		write (2, "Overflow error !\n", 17);
 	if (code == 3)
 		write (2, "The list can not contain duplicates\n", 36);
+	if (code == 4)
+	{
+		ft_putstr("Error\n");
+		exit (EXIT_FAILURE);
+	}
 	exit (EXIT_FAILURE);
+}
+
+void	free_param(char *buff, char*inst)
+{
+	free(inst);
+	inst = NULL;
+	free (buff);
+	buff = NULL;
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+		i++;
+	return (s1[i] - s2[i]);
+}
+
+int	isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
 }

@@ -6,51 +6,19 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 10:07:52 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/23 11:14:39 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/25 10:51:05 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/push_swap.h"
-
-void	ft_putchar(char c) {
-	write(1, &c, 1);
-}
-
-void	ft_putstr(char const *s)
-{
-	int i;
-
-	if (!s)
-		return ;
-	i = 0;
-	while (s[i])
-	{
-		ft_putchar(s[i]);
-		i++;
-	} 
-}
-
-int sorted(int *dup)
-{
-   	int i;
-
-	i = 0;
-	while (dup[i])
-	{
-		if (dup[i] < dup[i + 1])
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}
+#include "../includes/push_swap.h"
 
 /* sort the dup to find the perfect pivot   */
 
-void     find_pivot(t_data *m)
+void	find_pivot(t_data *m)
 {
-	int i;
-	int mid;
+	int	i;
+	int	mid;
+	int	temp;
 
 	i = 0;
 	while (i < m->a_size)
@@ -65,7 +33,7 @@ void     find_pivot(t_data *m)
 		{
 			if (m->dup[j] > m->dup[j + 1])
 			{
-				int temp = m->dup[j];
+				temp = m->dup[j];
 				m->dup[j] = m->dup[j + 1];
 				m->dup[j + 1] = temp;
 			}
@@ -77,9 +45,9 @@ void     find_pivot(t_data *m)
 	m->dup = NULL;
 }
 
-void		fill_dup(t_data *m, int *stack, int size)
+void	fill_dup(t_data *m, int *stack, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (m->dup != NULL)
@@ -104,7 +72,7 @@ void		fill_dup(t_data *m, int *stack, int size)
 
 void	find_best_way_b_a(t_data *m, int elem)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < m->b_size)
@@ -113,21 +81,20 @@ void	find_best_way_b_a(t_data *m, int elem)
 		{
 			m->inst.index = i;
 			m->inst.elem = m->stack_b[i];
-			break;
+			break ;
 		}
 		i++;
 	}
 	if (m->inst.index >= m->b_size / 2)
-		create_str(m ,"rrb", 3);
+		create_str(m, "rrb", 3);
 	else
 		create_str(m, "rb", 2);
 }
 
-
 void	move_from_b_to_a(t_data *m)
 {
-	int done;
-	 
+	int	done;
+
 	done = 1;
 	m->inst.start_value = m->stack_b[find_small_one(m->stack_b, m->b_size)];
 	while (done)
@@ -141,16 +108,11 @@ void	move_from_b_to_a(t_data *m)
 		if (m->inst.small == 0 && m->b_size == 0)
 		{
 			push_a(m);
-			break;
+			break ;
 		}
 		find_best_way_b_a(m, m->stack_b[m->inst.small]);
-		// find_best_way_b_a(m, m->inst.small);
-
 		while ((m->inst.small = find_small_one(m->stack_b, m->b_size)) != 0)
 		{
-			// printf ("{%d}\n", m->inst.small);
-			// if (m->inst.small == 0)
-			// 	break;
 			if (m->inst.best_rot[0] == 'r' && m->inst.best_rot[1] == 'b')
 				rotate_b(m);
 			else
@@ -161,17 +123,12 @@ void	move_from_b_to_a(t_data *m)
 	}
 }
 
-/*
-**
-*/
-
-void		move_big_elem_b(t_data *m)
+void	move_big_elem_b(t_data *m)
 {
-	int i;
-	int j;
-	
-	int org_size;
-	
+	int	i;
+	int	j;
+	int	org_size;
+
 	org_size = m->a_size;
 	i = 0;
 	while (i < org_size)
@@ -183,31 +140,4 @@ void		move_big_elem_b(t_data *m)
 		push_b(m);
 		i++;
 	}
-}
-
-char	*ft_strdup(const char *src)
-{
-	int		size;
-	char	*p;
-	int		i;
-
-	i = 0;
-	size = 0;
-	while (src[i] != '\0')
-	{
-		i++;
-		size++;
-	}
-	size++;
-	p = (char *)malloc(size * sizeof(char));
-	if (p == NULL)
-		return (NULL);
-	i = 0;
-	while (src[i] != '\0')
-	{
-		*(p + i) = src[i];
-		i++;
-	}
-	*(p + i) = '\0';
-	return (p);
 }

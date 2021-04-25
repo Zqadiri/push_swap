@@ -10,17 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/push_swap.h"
+#include "../includes/push_swap.h"
 
-int find_big_one(int *stack, int size)
+int	find_big_one(int *stack, int size)
 {
-	int i;
-	int big;
+	int	i;
+	int	big;
+	int	tmp;
 
 	i = 0;
 	big = 0;
-	int tmp = stack[i];
-	while (i < size) 
+	tmp = stack[i];
+	while (i < size)
 	{
 		if (tmp < stack[i])
 		{
@@ -32,15 +33,16 @@ int find_big_one(int *stack, int size)
 	return (big);
 }
 
-int find_small_one(int	*stack, int size)
+int	find_small_one(int	*stack, int size)
 {
-	int i;
-	int small;
+	int	i;
+	int	small;
+	int	tmp;
 
 	i = 0;
 	small = 0;
-	int tmp = stack[i];
-	while (i < size) 
+	tmp = stack[i];
+	while (i < size)
 	{
 		if (tmp > stack[i])
 		{
@@ -56,9 +58,9 @@ int find_small_one(int	*stack, int size)
 ** max 2 operations for 3 elements
 */
 
-void sort_stack_3(t_data *m)
+void	sort_stack_3(t_data *m)
 {
-	int big;
+	int	big;
 
 	big = find_big_one(m->stack_a, m->a_size);
 	if (m->a_size == 1)
@@ -83,11 +85,11 @@ void sort_stack_3(t_data *m)
 
 void	sort_stack_5(t_data *m)
 {
-	int small;
+	int	small;
 
 	while (m->b_size < 2)
 	{
- 		small = find_small_one(m->stack_a, m->a_size);
+		small = find_small_one(m->stack_a, m->a_size);
 		if (small == 0)
 			push_b(m);
 		else
@@ -110,7 +112,7 @@ void	sort_stack_5(t_data *m)
 		push_a(m);
 }
 
-void begin_sort(t_data *m)
+void 	begin_sort(t_data *m)
 {
 	if (is_sorted(m))
 		return ;
@@ -124,10 +126,10 @@ void begin_sort(t_data *m)
 		sort_stack_500(m);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	t_data m;
-	int count;
+	t_data	m;
+	int		count;
 
 	count = 1;
 	if (argc == 2)
@@ -151,24 +153,9 @@ int main(int argc, char *argv[])
 	if (is_sorted(&m))
 		exit(EXIT_SUCCESS);
 	begin_sort(&m);
-	// int i = 0;
-	// printf ("a_size : [%d]\n", m.a_size);
-	// while (i < m.a_size)
-	// {
-	// 	printf ("%d\n", m.stack_a[i]);
-	// 	i++;
-	// }
-	// printf ("**************\n");
-	// i = 0;
-	// printf ("b_size :[%d]\n", m.b_size);
-	// while (i < m.b_size)
-	// {
-	// 	printf ("%d\n", m.stack_b[i]);
-	// 	i++;
-	// }
 	if (is_sorted(&m))
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
 	return (EXIT_SUCCESS);
-}    
+}

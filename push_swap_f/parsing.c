@@ -6,18 +6,11 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:27:21 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/22 16:28:33 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/25 10:53:43 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/push_swap.h"
-
-static int  check_overflow(long digit)
-{
-	if (digit > INT32_MAX || digit < INT32_MIN)
-		return (0);
-	return (1);
-}
 
 void    is_valid(t_data *m, char *arg)
 {
@@ -60,7 +53,6 @@ void        init_struct(t_data *m, int argc )
 	m->inst.index = -1;
 	m->inst.pivot = -1;
 	m->inst.best_rot = NULL;
-	m->inst.big = 0;
 }
 
 void		init_stacks(t_data *m, int argc)
@@ -85,18 +77,6 @@ void		init_stacks(t_data *m, int argc)
 		m->dup[i] = 0;
 		i++;
 	}
-}
-
-void        error_code(int  code)
-{
-    write (2, "Error\n", 6);
-    if (code == 1)
-        write (2, "Checker gets as an argument a list of integers ...\n", 51);
-    if (code == 2)
-        write (2, "Overflow error !\n", 17);
-    if (code == 3)
-        write (2, "The list can not contain duplicates\n", 36);
-    exit (EXIT_FAILURE);
 }
 
 int		is_sorted(t_data *m)
