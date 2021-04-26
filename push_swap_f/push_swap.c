@@ -153,6 +153,21 @@ int	main(int argc, char *argv[])
 	if (is_sorted(&m))
 		exit(EXIT_SUCCESS);
 	begin_sort(&m);
+	// int i = 0;
+	// while (i < m.a_size)
+	// {
+		// printf("%d\n", m.stack_a[i]);
+		// i++;
+	// }
+	// printf ("**************\n");
+	// i = 0;
+	// while (i < m.b_size)
+	// {
+		// printf("%d\n", m.stack_b[i]);
+		// i++;
+	// }
+	// printf ("a_size : [%d]\n", m.a_size);
+	// printf ("b_size :[%d]\n", m.b_size);
 	if (is_sorted(&m))
 		ft_putstr("OK\n");
 	else

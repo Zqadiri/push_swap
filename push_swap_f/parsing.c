@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:27:21 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/25 10:53:43 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/25 16:54:08 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int		is_sorted(t_data *m)
 
 	i = 0;
 	len = m->a_size;
+	if (m->b_size != 0)
+		return (0);
 	while (i < len - 1)
 	{
 		if (m->stack_a[i] < m->stack_a[i + 1])

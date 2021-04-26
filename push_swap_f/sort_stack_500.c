@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 11:32:24 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/25 09:06:14 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/25 16:46:19 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	move_to_b(t_data *m, int delim)
 	{
 		if (m->dup[i] <= delim)
 		{
-			printf ("delim :%d\n", delim);
+			// printf ("delim :%d\n", delim);
 			find_best_way_a_b(m, m->dup[i]);
 			apply_instruction(m);
 		}
@@ -80,31 +80,4 @@ void    sort_stack_500(t_data *m)
 	{
 		push_b(m);
 	}
-	// printf ("{%d}\n", m->inst.pivot);
-	// while (m->b_size < 100) // work later with quater of the size of stack
-	// {
-	// 	m->inst.index = find_small_one(m->stack_a, m->a_size); 
-	// 	if (m->stack_a[m->inst.index] > m->inst.pivot)
-	// 		break ;
-	// 	if (m->inst.index == 0)
-	// 		push_b(m);
-	// 	else 
-	// 	{
-	// 		find_best_way_a_b(m, m->stack_a[m->inst.index]);
-	// 		m->inst.elem = m->stack_a[m->inst.index];
-	// 		// think of another condition
-	// 		while (m->inst.index != 0)
-	// 		{
-	// 			m->inst.index = find_pos(m->stack_a, m->a_size, m->inst.elem);
-	// 			if (m->inst.index == 0)
-	// 				push_b(m);
-	// 			if (m->inst.best_rot[0] == 'r' && m->inst.best_rot[1] == 'a')
-	// 				rotate_a(m);
-	// 			else
-	// 				apply_rra(m);
-	// 		}
-	// 		// printf ("[%d]\n", m->inst.index);
-	// 		// printf ("{%d}\n",m->stack_a[m->inst.index]);
-	// 	}
-	// }
 }				

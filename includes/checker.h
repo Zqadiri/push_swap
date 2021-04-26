@@ -66,5 +66,6 @@ void				check_duplicate(t_data *data);
 void				init_struct(t_data *data, int argc);
 void				init_stacks(t_data *data, int argc);
 int					is_sorted(t_data *m);
+void				help(char *inst, t_data *m);
 
 #endif

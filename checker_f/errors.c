@@ -71,3 +71,8 @@ int	is_sorted(t_data *m)
 	}
 	return (1);
 }
+
+// void	help(char *inst, t_data *m)
+// {
+
+// }

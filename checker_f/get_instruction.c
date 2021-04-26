@@ -68,10 +68,6 @@ void	push_a(t_data *m)
 	m->b_size--;
 }
 
-/*
-** fix this mess !!!!
-*/
-
 void	check_valid_instr(t_data *m, char *inst)
 {
 	if (inst[0] == '\0')

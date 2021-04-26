@@ -102,18 +102,31 @@ void	find_best_way_a_b(t_data *m, int elem)
 
 void	push_to_b(t_data *m)
 {
-	int i;
+	int	done;
+	int	i;
+	int start_value;
 
 	i = 0;
-	fill_dup(m, m->stack_a, m->a_size);
-	while (i < m->dup_size)
+	done = 1;
+	while (i++ < m->a_size)
 	{
-		if (m->dup[i] <= m->inst.pivot)
+		if (m->stack_a[i] > m->inst.pivot)
 		{
-			find_best_way_a_b(m, m->dup[i]);
-			apply_instruction(m);
+			start_value = m->stack_a[i]; 
+			break;
 		}
-		i++;
+	}
+	i = 0;
+	while (done)
+	{
+		if (m->stack_a[0] == start_value)
+			i = 1;
+		if (m->stack_a[0] > m->inst.pivot)
+			rotate_a(m);
+		else
+			push_b(m);
+		if (m->stack_a[0] == start_value && i == 1)
+			done = 0;
 	}
 }
 
