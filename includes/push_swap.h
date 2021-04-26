@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:39:00 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/25 10:52:40 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/26 13:51:58 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 
 typedef struct		s_instruction
 {
-	char			*stack_a_rot;
-	char			*stack_b_rot;
 	char			*best_rot;
 	int				index;
 	int				pivot;

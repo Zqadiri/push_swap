@@ -20,9 +20,6 @@
 
 typedef	struct		s_instruction
 {
-	char			*stack_a_rot;
-	char			*stack_b_rot;
-	char			*best_rot;
 	int				index;
 	int				pivot;
 	int				elem;

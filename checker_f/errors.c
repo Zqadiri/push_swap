@@ -21,7 +21,6 @@ void	init_struct(t_data *m, int argc )
 	m->stack_a = NULL;
 	m->inst.index = -1;
 	m->inst.pivot = -1;
-	m->inst.best_rot = NULL;
 	m->inst.big = 0;
 }
 
