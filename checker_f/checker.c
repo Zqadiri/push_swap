@@ -12,16 +12,6 @@
 
 #include "../includes/checker.h"
 
-static	int	len(char *arg)
-{
-	int	i;
-
-	i = 0;
-	while (arg[i] >= '0' && arg[i] <= '9')
-		i++;
-	return (i);
-}
-
 /*
 ** Check duplicate
 */

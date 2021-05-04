@@ -6,44 +6,57 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:27:21 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/25 16:54:08 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/30 13:08:05 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/push_swap.h"
+#include "../includes/push_swap.h"
 
-void    is_valid(t_data *m, char *arg)
+long	long	get_number(char *arg, int i)
 {
-	long digit;
-	int i;
-	int signe;
+	long long	digit;
 
-	i = 0;
 	digit = 0;
-	signe = 1;
-	if (arg[i] == '-')
-	{
-		signe = -1;
-		i++;
-	}	
 	while (arg[i] != '\0')
 	{
 		if (arg[i] >= '0' && arg[i] <= '9')
-		{
 			digit = (digit * 10) + arg[i] - '0';
-		}	
 		else
 			error_code(1);
 		i++;
 	}
-	if (!(check_overflow(digit * signe)))
-		error_code (2);
-	m->pos++;
-	m->stack_a[m->pos] = (int)digit * signe;
-
+	return (digit);
 }
 
-void        init_struct(t_data *m, int argc )
+void	is_valid(t_data *m, char *arg)
+{
+	int			i;
+	int			signe;
+	long long	digit;
+
+	digit = 0;
+	i = 0;
+	signe = 1;
+	if (len(arg) > 17)
+		error_code (2);
+	if (arg[i] == '-')
+	{
+		signe = -1;
+		if (!(isdigit(arg[++i])))
+			error_code(1);
+	}
+	if (arg[i] == '+')
+	{
+		if (!(isdigit(arg[++i])))
+			error_code(1);
+	}
+	digit = get_number(arg, i);
+	if (!(check_overflow(digit * signe)))
+		error_code (2);
+	m->stack_a[++m->pos] = (int)digit * signe;
+}
+
+void	init_struct(t_data *m, int argc )
 {
 	m->pos = -1;
 	m->a_size = argc;
@@ -55,10 +68,10 @@ void        init_struct(t_data *m, int argc )
 	m->inst.best_rot = NULL;
 }
 
-void		init_stacks(t_data *m, int argc)
+void	init_stacks(t_data *m, int argc)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (i < argc)
 	{
@@ -79,10 +92,10 @@ void		init_stacks(t_data *m, int argc)
 	}
 }
 
-int		is_sorted(t_data *m)
+int	is_sorted(t_data *m)
 {
-	int i;
-	int len;
+	int	i;
+	int	len;
 
 	i = 0;
 	len = m->a_size;
@@ -97,23 +110,3 @@ int		is_sorted(t_data *m)
 	}
 	return (1);
 }
-
-void    check_duplicate(t_data *m)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < m->a_size)
-	{
-		j = i + 1;
-		while (j < m->a_size)
-		{
-			if (m->stack_a[i] == m->stack_a[j])
-				error_code(3);
-			j++;
-		}
-		i++;
-	}
-}
-

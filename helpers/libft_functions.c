@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 10:26:10 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/25 10:40:18 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/30 13:44:31 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,14 @@ void	ft_putstr(char const *s)
 		ft_putchar(s[i]);
 		i++;
 	}
+}
+
+int	len(char *arg)
+{
+	int	i;
+
+	i = 0;
+	while (arg[i] >= '0' && arg[i] <= '9')
+		i++;
+	return (i);
 }

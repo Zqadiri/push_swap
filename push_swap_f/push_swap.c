@@ -12,46 +12,23 @@
 
 #include "../includes/push_swap.h"
 
-int	find_big_one(int *stack, int size)
+void	check_duplicate(t_data *m)
 {
 	int	i;
-	int	big;
-	int	tmp;
+	int	j;
 
 	i = 0;
-	big = 0;
-	tmp = stack[i];
-	while (i < size)
+	while (i < m->a_size)
 	{
-		if (tmp < stack[i])
+		j = i + 1;
+		while (j < m->a_size)
 		{
-			tmp = stack[i];
-			big = i;
+			if (m->stack_a[i] == m->stack_a[j])
+				error_code(3);
+			j++;
 		}
 		i++;
 	}
-	return (big);
-}
-
-int	find_small_one(int	*stack, int size)
-{
-	int	i;
-	int	small;
-	int	tmp;
-
-	i = 0;
-	small = 0;
-	tmp = stack[i];
-	while (i < size)
-	{
-		if (tmp > stack[i])
-		{
-			tmp = stack[i];
-			small = i;
-		}
-		i++;
-	}
-	return (small);
 }
 
 /*
@@ -150,24 +127,23 @@ int	main(int argc, char *argv[])
 		count++;
 	}
 	check_duplicate(&m);
+
 	if (is_sorted(&m))
 		exit(EXIT_SUCCESS);
 	begin_sort(&m);
 	// int i = 0;
 	// while (i < m.a_size)
 	// {
-		// printf("%d\n", m.stack_a[i]);
-		// i++;
+	// 	printf("%d\n", m.stack_a[i]);
+	// 	i++;
 	// }
 	// printf ("**************\n");
 	// i = 0;
 	// while (i < m.b_size)
 	// {
-		// printf("%d\n", m.stack_b[i]);
-		// i++;
+	// 	printf("%d\n", m.stack_b[i]);
+	// 	i++;
 	// }
-	// printf ("a_size : [%d]\n", m.a_size);
-	// printf ("b_size :[%d]\n", m.b_size);
 	if (is_sorted(&m))
 		ft_putstr("OK\n");
 	else

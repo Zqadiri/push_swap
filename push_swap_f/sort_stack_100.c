@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:33:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/26 12:38:56 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/04 16:14:41 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,3 +142,4 @@ void	sort_stack_100(t_data *m)
 	move_big_elem_b(m);
 	move_from_b_to_a(m);
 }
+

@@ -6,7 +6,7 @@
 #    By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/21 10:14:46 by zqadiri           #+#    #+#              #
-#    Updated: 2021/04/25 16:51:38 by zqadiri          ###   ########.fr        #
+#    Updated: 2021/05/01 10:52:07 by zqadiri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME_PS = 	push_swap
 
 NAME_CK = 	checker
 
-CMPL = 		-Wall -Werror -Wextra  -fsanitize=address
+CMPL = 		-Wall -Werror -Wextra -g
 
 HELP = 		./helpers/read_function.c\
 			./helpers/libft_functions.c\

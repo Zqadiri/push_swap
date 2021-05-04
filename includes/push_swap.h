@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:39:00 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/26 13:51:58 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/01 10:50:12 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct		s_instruction
 	int				elem;
 	int				start_value;
 	int				small;
+	int				big;
 
 }					t_instruction;
 
@@ -34,7 +35,7 @@ typedef struct		s_data
 	int				*stack_a;
 	int				*stack_b;
 	int				*dup;
-	int				*mid_point;
+	int				*top;
 	int				pos;
 	int				a_size;
 	int				dup_size;
@@ -85,5 +86,7 @@ void				move_big_elem_b(t_data *m);
 int					find_big_one(int *stack, int size);
 void				reverse_move_from_b_to_a(t_data *m);
 void				apply_instruction(t_data *m);
+void				help(char *inst, t_data *m);
+void				find_best_way_b_a(t_data *m, int elem);
 
 #endif

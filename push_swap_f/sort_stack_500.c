@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 11:32:24 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/25 16:46:19 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/04 16:15:02 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,30 @@
 **  part_4 quarter_3->a_size - 1
 */
 
-void	split_stack_a(t_data *m)
+void	push_back_sorted(t_data *m)
 {
-	// duplicate stack_a sort it and find midpoints
-	int i;
-	
-	if (!(m->mid_point = malloc(sizeof(int) * 3)))
-		exit(EXIT_FAILURE);
-	fill_dup(m, m->stack_a, m->a_size);
-	for (i = 0; i < m->a_size; i++)
+	while (1)
 	{
-		for (int j = 0; j < (m->a_size - i - 1); j++)
+		m->inst.big = find_big_one(m->stack_b, m->b_size);
+		if (m->inst.big == 0)
+			push_a(m);
+		if (m->inst.big == 0 && m->b_size == 0)
 		{
-			if (m->dup[j] > m->dup[j + 1])
-			{
-				int temp = m->dup[j];
-				m->dup[j] = m->dup[j + 1];
-				m->dup[j + 1] = temp;
-			}
+			push_a(m);
+			break ;
 		}
+		find_best_way_b_a(m, m->stack_b[m->inst.big]);
+		while ((m->inst.big = find_big_one(m->stack_b, m->b_size)) != 0)
+		{
+			if (m->inst.best_rot[0] == 'r' && m->inst.best_rot[1] == 'b')
+				rotate_b(m);
+			else
+				apply_rrb(m);
+		}
+		push_a(m);
 	}
-	m->mid_point[0] = m->dup[m->a_size / 4];
-	m->mid_point[1] = m->dup[m->a_size / 2];
-	m->mid_point[2] = m->mid_point[1] + m->mid_point[0];
 }
+
 void	move_to_b(t_data *m, int delim)
 {
 	int i;
@@ -55,12 +55,13 @@ void	move_to_b(t_data *m, int delim)
 	{
 		if (m->dup[i] <= delim)
 		{
-			// printf ("delim :%d\n", delim);
 			find_best_way_a_b(m, m->dup[i]);
 			apply_instruction(m);
 		}
 		i++;
 	}
+	m->top[m->inst.index] = m->stack_b[0];
+	m->inst.index++;
 }
 
 void    sort_stack_500(t_data *m)
@@ -69,15 +70,20 @@ void    sort_stack_500(t_data *m)
 	int cursor;
 	
 	i = 0;
-	cursor = -1;
-	find_pivot(m);
-	split_stack_a(m);
-	// chane the funtion parameters and turn it into a recursion
-	move_to_b(m,  m->mid_point[0]);
-	move_to_b(m,  m->mid_point[1]);
-	move_to_b(m,  m->mid_point[2]);
+	cursor = 50;
+	m->inst.index = 0;
+	// split_stack_a(m);
+	if (!(m->top = malloc(sizeof(int) * 3)))
+		exit(EXIT_FAILURE);
+	while (cursor < 500)
+	{
+		// printf ("-->%d\n", cursor);
+		move_to_b(m, cursor);
+		cursor+=50;
+	}
 	while (m->a_size != 0)
 	{
 		push_b(m);
 	}
-}				
+	push_back_sorted(m);
+}	

@@ -91,25 +91,8 @@ void	check_valid_instr(t_data *m, char *inst)
 			rotate_a(m);
 		else if (!ft_strcmp(inst, "rb"))
 			rotate_b(m);
-		else if (!ft_strcmp(inst, "rr"))
-		{
-			rotate_a(m);
-			rotate_b(m);
-		}
-		else if (!ft_strcmp(inst, "rra"))
-			apply_rra(m);
-		else if (!ft_strcmp(inst, "rrb"))
-			apply_rrb(m);
-		else if (!ft_strcmp(inst, "rrr"))
-		{
-			apply_rrb(m);
-			apply_rra(m);
-		}
 		else
-		{
-			ft_putstr("Error\n");
-			exit (EXIT_FAILURE);
-		}
+			help(inst, m);
 	}
 }
 

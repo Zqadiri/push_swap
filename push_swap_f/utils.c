@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 10:07:52 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/25 10:51:05 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/30 14:18:58 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 void	find_pivot(t_data *m)
 {
 	int	i;
+	int	j;
 	int	mid;
 	int	temp;
 
@@ -27,9 +28,10 @@ void	find_pivot(t_data *m)
 		i++;
 	}
 	i = 0;
-	for (i = 0; i < m->a_size; i++)
+	while (i < m->a_size)
 	{
-		for (int j = 0; j < (m->a_size - i - 1); j++)
+		j = 0;
+		while (j < (m->a_size - i - 1))
 		{
 			if (m->dup[j] > m->dup[j + 1])
 			{
@@ -37,7 +39,9 @@ void	find_pivot(t_data *m)
 				m->dup[j] = m->dup[j + 1];
 				m->dup[j + 1] = temp;
 			}
+			j++;
 		}
+		i++;
 	}
 	mid = m->dup[m->a_size / 2];
 	m->inst.pivot = mid;
@@ -55,7 +59,8 @@ void	fill_dup(t_data *m, int *stack, int size)
 		free (m->dup);
 		m->dup = NULL;
 	}
-	if (!(m->dup = malloc(sizeof(int) * (size))))
+	m->dup = malloc(sizeof(int) * (size));
+	if (m->dup == NULL)
 		exit(EXIT_FAILURE);
 	m->dup_size = size;
 	while (i < size)

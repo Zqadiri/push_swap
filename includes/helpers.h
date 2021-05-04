@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 10:27:46 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/25 13:34:23 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/04/30 13:43:42 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,8 @@ void		error_code(int code);
 void	    free_param(char *buff, char*inst);
 int         ft_strcmp(char *s1, char *s2);
 int	        isdigit(int c);
+int         find_small_one(int	*stack, int size);
+int         find_big_one(int *stack, int size);
+int         len(char *arg);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:38:10 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/21 14:18:36 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/04 16:15:20 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ void    push_a(t_data *m)
 **  and put it at the top of b. Do nothing if a is empty.
 */
 
-//functional programming
 void    push_b(t_data *m)
 {
 	int i;

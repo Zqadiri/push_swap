@@ -71,7 +71,25 @@ int	is_sorted(t_data *m)
 	return (1);
 }
 
-// void	help(char *inst, t_data *m)
-// {
-
-// }
+void	help(char *inst, t_data *m)
+{
+	if (!ft_strcmp(inst, "rr"))
+	{
+		rotate_a(m);
+		rotate_b(m);
+	}
+	else if (!ft_strcmp(inst, "rra"))
+		apply_rra(m);
+	else if (!ft_strcmp(inst, "rrb"))
+		apply_rrb(m);
+	else if (!ft_strcmp(inst, "rrr"))
+	{
+		apply_rrb(m);
+		apply_rra(m);
+	}
+	else
+	{
+		ft_putstr("Error\n");
+		exit (EXIT_FAILURE);
+	}
+}
