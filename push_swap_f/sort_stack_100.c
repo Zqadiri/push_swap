@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:33:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/04 16:14:41 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/07 16:52:30 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int		find_pos(int *stack, int size, int elem)
 	index = 0;
 	if (size == 0)
 		return (-1);
-
 	while (i < size) 
 	{
 		if (stack[i] == elem)

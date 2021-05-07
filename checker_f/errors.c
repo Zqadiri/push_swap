@@ -36,22 +36,6 @@ void	*ft_memset(void *str, int val, size_t len)
 	return (str);
 }
 
-void	init_stacks(t_data *m, int argc)
-{
-	m->stack_a = malloc(sizeof(int) * (argc));
-	if (m->stack_a == NULL)
-		exit(EXIT_FAILURE);
-	ft_memset(m->stack_a, 0, argc);
-	m->stack_b = malloc(sizeof(int) * (argc));
-	if (m->stack_b == NULL)
-		exit(EXIT_FAILURE);
-	ft_memset(m->stack_b, 0, argc);
-	m->dup = malloc(sizeof(int) * (argc));
-	if (m->dup == NULL)
-		exit(EXIT_FAILURE);
-	ft_memset(m->dup, 0, argc);
-}
-
 int	is_sorted(t_data *m)
 {
 	int	i;

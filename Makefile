@@ -6,7 +6,7 @@
 #    By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/21 10:14:46 by zqadiri           #+#    #+#              #
-#    Updated: 2021/05/01 10:52:07 by zqadiri          ###   ########.fr        #
+#    Updated: 2021/05/07 17:01:06 by zqadiri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS_CK = 	./checker_f/checker.c\
 		
 SRCS_PS =	./push_swap_f/push_swap.c\
 			./push_swap_f/sort_stack_100.c\
+			./push_swap_f/sort_100_500.c\
 			./push_swap_f/sort_stack_500.c\
 			./push_swap_f/utils.c\
 			./push_swap_f/parsing.c\
@@ -46,25 +47,3 @@ fclean:
 
 re:			fclean all
 .PHONY: 	all fclean
-
-
-# 	int i = 0;
-# while (i < m.a_size)
-# {
-# 	printf("%d\n", m.stack_a[i]);
-# 	i++;
-# }
-# printf ("**************\n");
-# i = 0;
-# while (i < m.b_size)
-# {
-# 	printf("%d\n", m.stack_b[i]);
-# 	i++;
-# }
-# // printf ("a_size : [%d]\n", m.a_size);
-# // printf ("b_size :[%d]\n", m.b_size);
-# // printf ("mid1 :[%d]\n", m.mid_point[0]);
-# // printf ("mid2 :[%d]\n", m.mid_point[1]);
-# // printf ("mid3 :[%d]\n", m.mid_point[2]);
-		
-		

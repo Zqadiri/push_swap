@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:27:21 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/30 13:08:05 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/05 13:38:37 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	init_struct(t_data *m, int argc )
 	m->inst.index = -1;
 	m->inst.pivot = -1;
 	m->inst.best_rot = NULL;
+	m->inst.one_step = 19;
+	m->inst.five_step = 39;
 }
 
 void	init_stacks(t_data *m, int argc)

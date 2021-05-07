@@ -97,10 +97,8 @@ void 	begin_sort(t_data *m)
 		sort_stack_3(m);
 	else if (m->a_size == 5)
 		sort_stack_5(m);
-	else if (m->a_size <= 100)
-		sort_stack_100(m);
 	else
-		sort_stack_500(m);
+		sort_100_500(m, 100, 20);
 }
 
 int	main(int argc, char *argv[])
@@ -127,7 +125,6 @@ int	main(int argc, char *argv[])
 		count++;
 	}
 	check_duplicate(&m);
-
 	if (is_sorted(&m))
 		exit(EXIT_SUCCESS);
 	begin_sort(&m);

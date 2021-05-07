@@ -83,6 +83,30 @@ void	is_valid(t_data *m, char *arg)
 	m->stack_a[++m->pos] = (int)digit * signe;
 }
 
+void	init_stacks(t_data *m, int argc)
+{
+	int	i;
+
+	i = 0;
+	while (i < argc)
+	{
+		m->stack_a[i] = 0;
+		i++;
+	}
+	i = 0;
+	while (i < argc)
+	{
+		m->stack_b[i] = 0;
+		i++;
+	}
+	i = 0;
+	while (i < argc)
+	{
+		m->dup[i] = 0;
+		i++;
+	}
+}
+
 int	main(int argc, char *argv[])
 {
 	t_data	m;
@@ -92,6 +116,12 @@ int	main(int argc, char *argv[])
 	if (argc-- < 2)
 		return (EXIT_SUCCESS);
 	init_struct(&m, argc);
+	if (!(m.stack_a = malloc(sizeof(int) * (argc))))
+		exit(EXIT_FAILURE);
+	if (!(m.stack_b = malloc(sizeof(int) * (argc))))
+		exit(EXIT_FAILURE);
+	if (!(m.dup = malloc(sizeof(int) * (argc))))
+		exit(EXIT_FAILURE);
 	init_stacks(&m, argc);
 	while (argv[count])
 	{

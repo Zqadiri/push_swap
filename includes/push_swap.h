@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:39:00 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/01 10:50:12 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/06 10:51:22 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct		s_instruction
 	int				start_value;
 	int				small;
 	int				big;
+	int				one_step;
+	int				five_step;
 
 }					t_instruction;
 
@@ -88,5 +90,16 @@ void				reverse_move_from_b_to_a(t_data *m);
 void				apply_instruction(t_data *m);
 void				help(char *inst, t_data *m);
 void				find_best_way_b_a(t_data *m, int elem);
+
+
+
+void    			sort_100_500(t_data *m, int delim, int step);
+void    			move_b(t_data *m, int start, int end);
+int					bottom(t_data *m, int start, int end);
+int					top(t_data *m, int start, int end);
+int 				find_position(t_data *m, int el);
+int 				*dup_sort(int *array, int len);
+
+
 
 #endif
