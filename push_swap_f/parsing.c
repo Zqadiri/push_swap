@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:27:21 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/05 13:38:37 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 15:34:22 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,32 +66,22 @@ void	init_struct(t_data *m, int argc )
 	m->inst.index = -1;
 	m->inst.pivot = -1;
 	m->inst.best_rot = NULL;
-	m->inst.one_step = 19;
-	m->inst.five_step = 39;
 }
 
 void	init_stacks(t_data *m, int argc)
 {
-	int	i;
-
-	i = 0;
-	while (i < argc)
-	{
-		m->stack_a[i] = 0;
-		i++;
-	}
-	i = 0;
-	while (i < argc)
-	{
-		m->stack_b[i] = 0;
-		i++;
-	}
-	i = 0;
-	while (i < argc)
-	{
-		m->dup[i] = 0;
-		i++;
-	}
+	m->stack_a = malloc(sizeof(int) * (argc));
+	if (m->stack_a == NULL)
+		exit(EXIT_FAILURE);
+	ft_memset(m->stack_a, 0, argc);
+	m->stack_b = malloc(sizeof(int) * (argc));
+	if (m->stack_b == NULL)
+		exit(EXIT_FAILURE);
+	ft_memset(m->stack_b, 0, argc);
+	m->dup = malloc(sizeof(int) * (argc));
+	if (m->dup == NULL)
+		exit(EXIT_FAILURE);
+	ft_memset(m->dup, 0, argc);
 }
 
 int	is_sorted(t_data *m)

@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 10:27:46 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 13:02:25 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 14:21:53 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int			isdigit(int c);
 int			find_small_one(int	*stack, int size);
 int			find_big_one(int *stack, int size);
 void		*ft_memset(void *str, int val, size_t len);
+int			find_pos(int *stack, int size, int elem);
+int			len(char *arg);
 
 #endif

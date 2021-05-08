@@ -59,26 +59,6 @@ void	sort_stack_3(t_data *m)
 			swap_a(m);
 	}
 }
-void	find_best_way_a_b(t_data *m, int elem)
-{
-	int i;
-
-	i = 0;
-	while (i < m->a_size)
-	{
-		if (m->stack_a[i] == elem)
-		{
-			m->inst.index = i;
-			m->inst.elem = m->stack_a[i];
-			break;
-		}
-		i++;
-	}
-	if (m->inst.index > m->a_size / 2)
-		create_str(m ,"rra", 3);
-	else
-		create_str(m, "ra", 2);
-}
 
 void	sort_stack_5(t_data *m)
 {
@@ -121,7 +101,6 @@ void 	begin_sort(t_data *m)
 		sort_100_500(m, 100, 20);
 	else if (m->a_size <= 500)
 		sort_100_500(m, 500, 40);
-
 }
 
 int	main(int argc, char *argv[])
@@ -135,12 +114,6 @@ int	main(int argc, char *argv[])
 	if (argc-- < 2)
 		exit (EXIT_FAILURE);
 	init_struct(&m, argc);
-	if (!(m.stack_a = malloc(sizeof(int) * (argc))))
-		exit(EXIT_FAILURE);
-	if (!(m.stack_b = malloc(sizeof(int) * (argc))))
-		exit(EXIT_FAILURE);
-	if (!(m.dup = malloc(sizeof(int) * (argc))))
-		exit(EXIT_FAILURE);
 	init_stacks(&m, argc);
 	while (argv[count])
 	{

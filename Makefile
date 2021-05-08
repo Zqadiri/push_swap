@@ -6,7 +6,7 @@
 #    By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/21 10:14:46 by zqadiri           #+#    #+#              #
-#    Updated: 2021/05/08 12:10:19 by zqadiri          ###   ########.fr        #
+#    Updated: 2021/05/08 14:20:07 by zqadiri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ CMPL = 		-Wall -Werror -Wextra -g
 HELP = 		./helpers/read_function.c\
 			./helpers/libft_functions.c\
 			./helpers/common_functions.c\
+			./helpers/find.c\
 
 SRCS_CK = 	./checker_f/checker.c\
 			./checker_f/errors.c\

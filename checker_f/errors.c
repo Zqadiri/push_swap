@@ -65,13 +65,3 @@ void	help(char *inst, t_data *m)
 		exit (EXIT_FAILURE);
 	}
 }
-
-int	len(char *arg)
-{
-	int	i;
-
-	i = 0;
-	while (arg[i] >= '0' && arg[i] <= '9')
-		i++;
-	return (i);
-}

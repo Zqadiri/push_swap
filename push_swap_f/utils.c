@@ -6,60 +6,77 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 10:07:52 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 12:56:37 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 15:35:53 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	find_big_one(int *stack, int size)
+int	hold_bottom(t_data *m, int start, int end)
 {
 	int	i;
-	int	big;
-	int	tmp;
+
+	i = m->a_size - 1;
+	while (i >= 0)
+	{
+		if (m->stack_a[i] >= start && m->stack_a[i] <= end)
+		{
+			return (i);
+		}
+		i--;
+	}
+	return (-1);
+}
+
+int	hold_first(t_data *m, int start, int end)
+{
+	int	i;
 
 	i = 0;
-	big = 0;
-	tmp = stack[i];
-	while (i < size)
+	while (i <= m->a_size)
 	{
-		if (tmp < stack[i])
+		if (m->stack_a[i] >= start && m->stack_a[i] <= end)
 		{
-			tmp = stack[i];
-			big = i;
+			return (i);
 		}
 		i++;
 	}
-	return (big);
+	return (-1);
 }
 
-int	find_small_one(int	*stack, int size)
+void	create_str(t_data *m, char *inst, int len)
 {
 	int	i;
-	int	small;
-	int	tmp;
 
 	i = 0;
-	small = 0;
-	tmp = stack[i];
-	while (i < size)
+	m->inst.best_rot = malloc(sizeof(char) * len + 1);
+	if (m->inst.best_rot == NULL)
+		exit (EXIT_FAILURE);
+	while (inst[i])
 	{
-		if (tmp > stack[i])
+		m->inst.best_rot[i] = inst[i];
+		i++;
+	}
+	m->inst.best_rot[i] = '\0';
+}
+
+void	find_best_way_a_b(t_data *m, int elem)
+{
+	int	i;
+
+	i = 0;
+	while (i < m->a_size)
+	{
+		if (m->stack_a[i] == elem)
 		{
-			tmp = stack[i];
-			small = i;
+			m->inst.index = i;
+			m->inst.elem = m->stack_a[i];
+			break ;
 		}
 		i++;
 	}
-	return (small);
-}
-
-int	len(char *arg)
-{
-	int	i;
-
-	i = 0;
-	while (arg[i] >= '0' && arg[i] <= '9')
-		i++;
-	return (i);
+	if (m->inst.index > m->a_size / 2)
+		create_str(m, "rra", 3);
+	else
+		create_str(m, "ra", 2);
 }

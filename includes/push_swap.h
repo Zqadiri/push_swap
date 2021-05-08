@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:39:00 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 13:08:58 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 15:10:22 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ typedef struct s_instruction
 	int				start_value;
 	int				small;
 	int				big;
-	int				one_step;
-	int				five_step;
-
 }	t_instruction;
 
 typedef struct s_data
@@ -75,18 +72,14 @@ int					is_sorted(t_data *m);
 void				sort_stack_3(t_data *m);
 void				sort_stack_5(t_data *m);
 void				begin_sort(t_data *m);
-int					find_small_one(int *stack, int size);
 void				create_str(t_data *m, char *inst, int len);
-int					find_pos(int *stack, int size, int elem);
 void				find_best_way_a_b(t_data *m, int elem);
-int					find_big_one(int *stack, int size);
 void				help(char *inst, t_data *m);
 void				sort_100_500(t_data *m, int delim, int step);
 void				move_b(t_data *m, int start, int end);
 int					bottom(t_data *m, int start, int end);
 int					top(t_data *m, int start, int end);
-int					find_position(t_data *m, int el);
-int					*fill_dup(int *array, int len);
-int					len(char *arg);
+int					hold_bottom(t_data *m, int start, int end);
+int					hold_first(t_data *m, int start, int end);
 
 #endif
