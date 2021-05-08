@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 10:07:52 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/30 14:18:58 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 12:15:18 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,27 +47,6 @@ void	find_pivot(t_data *m)
 	m->inst.pivot = mid;
 	free (m->dup);
 	m->dup = NULL;
-}
-
-void	fill_dup(t_data *m, int *stack, int size)
-{
-	int	i;
-
-	i = 0;
-	if (m->dup != NULL)
-	{
-		free (m->dup);
-		m->dup = NULL;
-	}
-	m->dup = malloc(sizeof(int) * (size));
-	if (m->dup == NULL)
-		exit(EXIT_FAILURE);
-	m->dup_size = size;
-	while (i < size)
-	{
-		m->dup[i] = stack[i];
-		i++;
-	}
 }
 
 /*

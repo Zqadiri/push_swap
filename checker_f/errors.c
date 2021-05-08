@@ -24,18 +24,6 @@ void	init_struct(t_data *m, int argc )
 	m->inst.big = 0;
 }
 
-void	*ft_memset(void *str, int val, size_t len)
-{
-	unsigned char	*ptr;
-	size_t			i;
-
-	i = 0;
-	ptr = (unsigned char *)str;
-	while (0 < len--)
-		ptr[i++] = val;
-	return (str);
-}
-
 int	is_sorted(t_data *m)
 {
 	int	i;

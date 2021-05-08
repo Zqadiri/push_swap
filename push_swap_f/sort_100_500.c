@@ -6,17 +6,13 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:23:32 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/07 16:57:46 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 12:16:56 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/*
-** second try
-*/
-
-int *dup_sort(int *array, int len)
+int *fill_dup(int *array, int len)
 {
 	int i;
 	int j;
@@ -90,6 +86,39 @@ int hold_first(t_data *m, int start, int end)
 	}
 	return (-1);
 }
+void	create_str(t_data *m, char *inst, int len)
+{
+	int i;
+
+	i = 0;
+	if (!(m->inst.best_rot = malloc(sizeof(char) * len + 1)))
+		exit (EXIT_FAILURE);
+	while (inst[i])
+	{
+		m->inst.best_rot[i] = inst[i];
+		i++;
+	}
+	m->inst.best_rot[i] = '\0';
+}
+int		find_pos(int *stack, int size, int elem)
+{
+	
+	int i;
+	int index;
+
+	i = 0;
+	index = 0;
+	if (size == 0)
+		return (-1);
+	while (i < size) 
+	{
+		if (stack[i] == elem)
+			break;
+		else
+			i++;	
+	}
+	return (i);
+}
 
 void    calculate_best_way(t_data *m, int top, int bottom)
 {
@@ -140,18 +169,12 @@ void    move_b(t_data *m, int start, int end)
 	{
 		done++;
 		found_it = 0;
-		h_first = -1;
-		h_second = -1;
-		if ((h_first = hold_first(m, start, end)) > -1)
-		{
-			// printf ("h_first : [%d] [%d]\n", h_first, m->stack_a[h_first]);
+		h_first =  hold_first(m, start, end);
+		h_second = hold_bottom(m, start, end);
+		if (h_first > -1)
 			found_it = 1;
-		}
-		if ((h_second = hold_bottom(m, start, end)) > -1)
-		{
-			// printf ("h_bottom : [%d] [%d]\n", h_second, m->stack_a[h_second]);
+		if (h_second > -1)
 			found_it = 1;
-		}		
 		calculate_best_way(m, h_first, h_second);
 		if (found_it)
 			push_b(m);
@@ -173,7 +196,7 @@ void    sort_100_500(t_data *m, int delim, int step)
 		move_b(m, start_value, start_value + (step-1));
 		start_value += step;
 	}
-	result = dup_sort(m->stack_b, m->b_size);
+	result = fill_dup(m->stack_b, m->b_size);
 	index = 0;
 	while (m->b_size != 0)
 	{

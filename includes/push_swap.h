@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:39:00 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/06 10:51:22 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 12:15:36 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void				find_pivot(t_data *m);
 void				sort_stack_3(t_data *m);
 void				sort_stack_5(t_data *m);
 void				begin_sort(t_data *m);
-void				fill_dup(t_data *m, int *stack, int size);
 int					find_small_one(int *stack, int size);
 void				create_str(t_data *m, char *inst, int len);
 void				move_from_b_to_a(t_data *m);
@@ -98,7 +97,7 @@ void    			move_b(t_data *m, int start, int end);
 int					bottom(t_data *m, int start, int end);
 int					top(t_data *m, int start, int end);
 int 				find_position(t_data *m, int el);
-int 				*dup_sort(int *array, int len);
+int 				*fill_dup(int *array, int len);
 
 
 

@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 10:49:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/04/25 13:34:14 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 12:22:34 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,16 @@ int	isdigit(int c)
 		return (1);
 	else
 		return (0);
+}
+
+void	*ft_memset(void *str, int val, size_t len)
+{
+	unsigned char	*ptr;
+	size_t			i;
+
+	i = 0;
+	ptr = (unsigned char*)str;
+	while (0 < len--)
+		ptr[i++] = val;
+	return (str);
 }

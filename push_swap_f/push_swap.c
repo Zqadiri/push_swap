@@ -59,6 +59,26 @@ void	sort_stack_3(t_data *m)
 			swap_a(m);
 	}
 }
+void	find_best_way_a_b(t_data *m, int elem)
+{
+	int i;
+
+	i = 0;
+	while (i < m->a_size)
+	{
+		if (m->stack_a[i] == elem)
+		{
+			m->inst.index = i;
+			m->inst.elem = m->stack_a[i];
+			break;
+		}
+		i++;
+	}
+	if (m->inst.index > m->a_size / 2)
+		create_str(m ,"rra", 3);
+	else
+		create_str(m, "ra", 2);
+}
 
 void	sort_stack_5(t_data *m)
 {
@@ -97,8 +117,11 @@ void 	begin_sort(t_data *m)
 		sort_stack_3(m);
 	else if (m->a_size == 5)
 		sort_stack_5(m);
-	else
+	else if (m->a_size <= 100)
 		sort_100_500(m, 100, 20);
+	else if (m->a_size <= 500)
+		sort_100_500(m, 500, 40);
+
 }
 
 int	main(int argc, char *argv[])
@@ -128,22 +151,9 @@ int	main(int argc, char *argv[])
 	if (is_sorted(&m))
 		exit(EXIT_SUCCESS);
 	begin_sort(&m);
-	// int i = 0;
-	// while (i < m.a_size)
-	// {
-	// 	printf("%d\n", m.stack_a[i]);
-	// 	i++;
-	// }
-	// printf ("**************\n");
-	// i = 0;
-	// while (i < m.b_size)
-	// {
-	// 	printf("%d\n", m.stack_b[i]);
-	// 	i++;
-	// }
-	if (is_sorted(&m))
-		ft_putstr("OK\n");
-	else
-		ft_putstr("KO\n");
+	// if (is_sorted(&m))
+	// 	ft_putstr("OK\n");
+	// else
+	// 	ft_putstr("KO\n");
 	return (EXIT_SUCCESS);
 }

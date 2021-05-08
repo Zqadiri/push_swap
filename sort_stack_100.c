@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:33:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/07 16:52:30 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 12:17:42 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,26 +74,7 @@ void	create_str(t_data *m, char *inst, int len)
 	m->inst.best_rot[i] = '\0';
 }
 
-void	find_best_way_a_b(t_data *m, int elem)
-{
-	int i;
 
-	i = 0;
-	while (i < m->a_size)
-	{
-		if (m->stack_a[i] == elem)
-		{
-			m->inst.index = i;
-			m->inst.elem = m->stack_a[i];
-			break;
-		}
-		i++;
-	}
-	if (m->inst.index > m->a_size / 2)
-		create_str(m ,"rra", 3);
-	else
-		create_str(m, "ra", 2);
-}
 
 /*
 ** push element below the 

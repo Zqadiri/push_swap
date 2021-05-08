@@ -85,26 +85,18 @@ void	is_valid(t_data *m, char *arg)
 
 void	init_stacks(t_data *m, int argc)
 {
-	int	i;
-
-	i = 0;
-	while (i < argc)
-	{
-		m->stack_a[i] = 0;
-		i++;
-	}
-	i = 0;
-	while (i < argc)
-	{
-		m->stack_b[i] = 0;
-		i++;
-	}
-	i = 0;
-	while (i < argc)
-	{
-		m->dup[i] = 0;
-		i++;
-	}
+	m->stack_a = malloc(sizeof(int) * (argc));
+	if (m->stack_a == NULL)
+		exit(EXIT_FAILURE);
+	ft_memset(m->stack_a, 0, argc);
+	m->stack_b = malloc(sizeof(int) * (argc));
+	if (m->stack_b == NULL)
+		exit(EXIT_FAILURE);
+	ft_memset(m->stack_b, 0, argc);
+	m->dup = malloc(sizeof(int) * (argc));
+	if (m->dup == NULL)
+		exit(EXIT_FAILURE);
+	ft_memset(m->dup, 0, argc);
 }
 
 int	main(int argc, char *argv[])
@@ -116,12 +108,6 @@ int	main(int argc, char *argv[])
 	if (argc-- < 2)
 		return (EXIT_SUCCESS);
 	init_struct(&m, argc);
-	if (!(m.stack_a = malloc(sizeof(int) * (argc))))
-		exit(EXIT_FAILURE);
-	if (!(m.stack_b = malloc(sizeof(int) * (argc))))
-		exit(EXIT_FAILURE);
-	if (!(m.dup = malloc(sizeof(int) * (argc))))
-		exit(EXIT_FAILURE);
 	init_stacks(&m, argc);
 	while (argv[count])
 	{

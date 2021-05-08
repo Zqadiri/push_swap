@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 11:32:24 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/04 16:15:02 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 12:09:44 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ void	move_to_b(t_data *m, int delim)
 	{
 		if (m->dup[i] <= delim)
 		{
-			find_best_way_a_b(m, m->dup[i]);
-			apply_instruction(m);
+			find_best_way_a_b(m, m->dup[i]);instruction(m);
 		}
 		i++;
 	}
