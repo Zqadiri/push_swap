@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:23:32 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 17:14:23 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 17:41:30 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	move_b(t_data *m, int start, int end)
 
 void	move_to_b(t_data *m, int delim, int step)
 {
+	m->pos = 0;
 	while (m->inst.start_value < delim)
 	{
 		move_b(m, m->inst.start_value, m->inst.start_value + (step - 1));
@@ -84,20 +85,10 @@ void	move_to_b(t_data *m, int delim, int step)
 	}
 }
 
-int	find_init_values(t_data *m)
-{
-	int	delim;
-
-	m->inst.start_value = m->stack_a[find_small_one(m->stack_a, m->a_size)];
-	delim = m->stack_a[find_big_one(m->stack_a, m->a_size)];
-	return (delim);
-}
-
 void	sort_100_500(t_data *m, int delim, int step)
 {
 	delim = find_init_values(m);
 	move_to_b(m, delim, step);
-	m->pos = 0;
 	while (m->b_size != 0)
 	{
 		m->pos = find_big_one(m->stack_b, m->b_size);

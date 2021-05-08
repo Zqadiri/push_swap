@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 10:07:52 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 15:35:53 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 17:35:08 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,13 @@ void	find_best_way_a_b(t_data *m, int elem)
 		create_str(m, "rra", 3);
 	else
 		create_str(m, "ra", 2);
+}
+
+int	find_init_values(t_data *m)
+{
+	int	delim;
+
+	m->inst.start_value = m->stack_a[find_small_one(m->stack_a, m->a_size)];
+	delim = m->stack_a[find_big_one(m->stack_a, m->a_size)];
+	return (delim);
 }
