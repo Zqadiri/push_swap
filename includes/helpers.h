@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 10:27:46 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 12:22:44 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 12:56:42 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int         ft_strcmp(char *s1, char *s2);
 int	        isdigit(int c);
 int         find_small_one(int	*stack, int size);
 int         find_big_one(int *stack, int size);
-int         len(char *arg);
-void	*ft_memset(void *str, int val, size_t len);
+void	    *ft_memset(void *str, int val, size_t len);
 
 #endif

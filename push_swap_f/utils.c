@@ -6,122 +6,60 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 10:07:52 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 12:15:18 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 12:56:37 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/* sort the dup to find the perfect pivot   */
-
-void	find_pivot(t_data *m)
+int	find_big_one(int *stack, int size)
 {
 	int	i;
-	int	j;
-	int	mid;
-	int	temp;
+	int	big;
+	int	tmp;
 
 	i = 0;
-	while (i < m->a_size)
+	big = 0;
+	tmp = stack[i];
+	while (i < size)
 	{
-		m->dup[i] = m->stack_a[i];
-		i++;
-	}
-	i = 0;
-	while (i < m->a_size)
-	{
-		j = 0;
-		while (j < (m->a_size - i - 1))
+		if (tmp < stack[i])
 		{
-			if (m->dup[j] > m->dup[j + 1])
-			{
-				temp = m->dup[j];
-				m->dup[j] = m->dup[j + 1];
-				m->dup[j + 1] = temp;
-			}
-			j++;
+			tmp = stack[i];
+			big = i;
 		}
 		i++;
 	}
-	mid = m->dup[m->a_size / 2];
-	m->inst.pivot = mid;
-	free (m->dup);
-	m->dup = NULL;
+	return (big);
 }
 
-/*
-** take the smallest one from stack_b -> push it back to 
-** stack_a -> rotate_a -> do it again (m->size_b == 0)
-*/
+int	find_small_one(int	*stack, int size)
+{
+	int	i;
+	int	small;
+	int	tmp;
 
-void	find_best_way_b_a(t_data *m, int elem)
+	i = 0;
+	small = 0;
+	tmp = stack[i];
+	while (i < size)
+	{
+		if (tmp > stack[i])
+		{
+			tmp = stack[i];
+			small = i;
+		}
+		i++;
+	}
+	return (small);
+}
+
+int	len(char *arg)
 {
 	int	i;
 
 	i = 0;
-	while (i < m->b_size)
-	{
-		if (m->stack_b[i] == elem)
-		{
-			m->inst.index = i;
-			m->inst.elem = m->stack_b[i];
-			break ;
-		}
+	while (arg[i] >= '0' && arg[i] <= '9')
 		i++;
-	}
-	if (m->inst.index >= m->b_size / 2)
-		create_str(m, "rrb", 3);
-	else
-		create_str(m, "rb", 2);
-}
-
-void	move_from_b_to_a(t_data *m)
-{
-	int	done;
-
-	done = 1;
-	m->inst.start_value = m->stack_b[find_small_one(m->stack_b, m->b_size)];
-	while (done)
-	{
-		m->inst.small = find_small_one(m->stack_b, m->b_size);
-		if (m->inst.small == 0)
-		{
-			push_a(m);
-			rotate_a(m);
-		}
-		if (m->inst.small == 0 && m->b_size == 0)
-		{
-			push_a(m);
-			break ;
-		}
-		find_best_way_b_a(m, m->stack_b[m->inst.small]);
-		while ((m->inst.small = find_small_one(m->stack_b, m->b_size)) != 0)
-		{
-			if (m->inst.best_rot[0] == 'r' && m->inst.best_rot[1] == 'b')
-				rotate_b(m);
-			else
-				apply_rrb(m);
-		}
-		push_a(m);
-		rotate_a(m);
-	}
-}
-
-void	move_big_elem_b(t_data *m)
-{
-	int	i;
-	int	j;
-	int	org_size;
-
-	org_size = m->a_size;
-	i = 0;
-	while (i < org_size)
-	{
-		j = 0;
-		while (m->stack_a[j] == m->inst.start_value)
-			if (m->stack_a[j++] == m->inst.start_value)
-				return ;
-		push_b(m);
-		i++;
-	}
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 10:49:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 12:22:34 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 12:43:19 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	free_param(char *buff, char*inst)
 
 int	ft_strcmp(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
@@ -61,7 +61,7 @@ void	*ft_memset(void *str, int val, size_t len)
 	size_t			i;
 
 	i = 0;
-	ptr = (unsigned char*)str;
+	ptr = (unsigned char *)str;
 	while (0 < len--)
 		ptr[i++] = val;
 	return (str);

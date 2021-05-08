@@ -151,9 +151,9 @@ int	main(int argc, char *argv[])
 	if (is_sorted(&m))
 		exit(EXIT_SUCCESS);
 	begin_sort(&m);
-	// if (is_sorted(&m))
-	// 	ft_putstr("OK\n");
-	// else
-	// 	ft_putstr("KO\n");
+	if (is_sorted(&m))
+		ft_putstr("OK\n");
+	else
+		ft_putstr("KO\n");
 	return (EXIT_SUCCESS);
 }

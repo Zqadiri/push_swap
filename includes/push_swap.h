@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:39:00 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 12:15:36 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 12:57:08 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,15 @@ int					is_sorted(t_data *m);
 ** Sorting
 */
 
-void				sort_stack_500(t_data *m);
-void				sort_stack_100(t_data *m);
-void				find_pivot(t_data *m);
 void				sort_stack_3(t_data *m);
 void				sort_stack_5(t_data *m);
 void				begin_sort(t_data *m);
 int					find_small_one(int *stack, int size);
 void				create_str(t_data *m, char *inst, int len);
-void				move_from_b_to_a(t_data *m);
 int					find_pos(int *stack, int size, int elem);
 void				find_best_way_a_b(t_data *m, int elem);
-void				move_big_elem_b(t_data *m);
 int					find_big_one(int *stack, int size);
-void				reverse_move_from_b_to_a(t_data *m);
-void				apply_instruction(t_data *m);
 void				help(char *inst, t_data *m);
-void				find_best_way_b_a(t_data *m, int elem);
 
 
 
@@ -99,6 +91,7 @@ int					top(t_data *m, int start, int end);
 int 				find_position(t_data *m, int el);
 int 				*fill_dup(int *array, int len);
 
+int         len(char *arg);
 
 
 #endif
