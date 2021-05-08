@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:39:00 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 12:57:08 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 13:08:58 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include "../includes/helpers.h"
 
-typedef struct		s_instruction
+typedef struct s_instruction
 {
 	char			*best_rot;
 	int				index;
@@ -30,9 +30,9 @@ typedef struct		s_instruction
 	int				one_step;
 	int				five_step;
 
-}					t_instruction;
+}	t_instruction;
 
-typedef struct		s_data
+typedef struct s_data
 {
 	int				*stack_a;
 	int				*stack_b;
@@ -43,7 +43,7 @@ typedef struct		s_data
 	int				dup_size;
 	int				b_size;
 	t_instruction	inst;
-}					t_data;
+}	t_data;
 
 /*
 **  Operations
@@ -81,17 +81,12 @@ int					find_pos(int *stack, int size, int elem);
 void				find_best_way_a_b(t_data *m, int elem);
 int					find_big_one(int *stack, int size);
 void				help(char *inst, t_data *m);
-
-
-
-void    			sort_100_500(t_data *m, int delim, int step);
-void    			move_b(t_data *m, int start, int end);
+void				sort_100_500(t_data *m, int delim, int step);
+void				move_b(t_data *m, int start, int end);
 int					bottom(t_data *m, int start, int end);
 int					top(t_data *m, int start, int end);
-int 				find_position(t_data *m, int el);
-int 				*fill_dup(int *array, int len);
-
-int         len(char *arg);
-
+int					find_position(t_data *m, int el);
+int					*fill_dup(int *array, int len);
+int					len(char *arg);
 
 #endif

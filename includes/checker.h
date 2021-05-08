@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include "../includes/helpers.h"
 
-typedef	struct		s_instruction
+typedef struct s_instruction
 {
 	int				index;
 	int				pivot;
@@ -26,9 +26,9 @@ typedef	struct		s_instruction
 	int				start_value;
 	int				small;
 	int				big;
-}					t_instruction;
+}	t_instruction;
 
-typedef	struct		s_data
+typedef struct s_data
 {
 	int				*stack_a;
 	int				*stack_b;
@@ -38,7 +38,7 @@ typedef	struct		s_data
 	int				dup_size;
 	int				b_size;
 	t_instruction	inst;
-}					t_data;
+}	t_data;
 
 /*
 **  Operations
@@ -65,6 +65,5 @@ void				init_stacks(t_data *data, int argc);
 int					is_sorted(t_data *m);
 void				help(char *inst, t_data *m);
 int					len(char *arg);
-
 
 #endif
