@@ -62,18 +62,18 @@ void	sort_stack_3(t_data *m)
 
 void	sort_stack_5(t_data *m)
 {
-	int	small;
-
+	m->inst.small = 0;
 	while (m->b_size < 2)
 	{
-		small = find_small_one(m->stack_a, m->a_size);
-		if (small == 0)
+		m->inst.small = find_small_one(m->stack_a, m->a_size);
+		if (m->inst.small == 0)
 			push_b(m);
 		else
 		{
-			find_best_way_a_b(m, m->stack_a[small]);
-			while ((small = find_small_one(m->stack_a, m->a_size)) != 0)
+			find_best_way_a_b(m, m->stack_a[m->inst.small]);
+			while (m->inst.small != 0)
 			{
+				m->inst.small = find_small_one(m->stack_a, m->a_size);
 				if (m->inst.best_rot[0] == 'r' && m->inst.best_rot[1] == 'a')
 					rotate_a(m);
 				else

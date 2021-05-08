@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 15:43:55 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 15:44:18 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 15:48:02 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void 	apply_rra(t_data *m)
 		return ;
 	i = m->a_size - 1;
 	tmp = m->stack_a[i];
-	while (i > 0) 
+	while (i > 0)
 	{
 		m->stack_a[i] = m->stack_a[i - 1];
 		i--;

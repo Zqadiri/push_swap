@@ -6,11 +6,25 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:23:32 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 15:32:54 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/05/08 15:56:29 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+void	calculate_best_way_h(t_data *m)
+{
+	while (m->inst.index != 0)
+	{
+		m->inst.index = find_pos(m->stack_a, m->a_size, m->inst.elem);
+		if (m->inst.index == 0)
+			break ;
+		if (m->inst.best_rot[0] == 'r' && m->inst.best_rot[1] == 'a')
+			rotate_a(m);
+		else
+			apply_rra(m);
+	}	
+}
 
 void	calculate_best_way(t_data *m, int top, int bottom)
 {
@@ -31,16 +45,7 @@ void	calculate_best_way(t_data *m, int top, int bottom)
 		m->inst.elem = m->stack_a[m->inst.index];
 		create_str(m, "ra", 2);
 	}
-	while (m->inst.index != 0)
-	{
-		m->inst.index = find_pos(m->stack_a, m->a_size, m->inst.elem);
-		if (m->inst.index == 0)
-			break ;
-		if (m->inst.best_rot[0] == 'r' && m->inst.best_rot[1] == 'a')
-			rotate_a(m);
-		else
-			apply_rra(m);
-	}
+	calculate_best_way_h(m);
 }
 
 void	move_b(t_data *m, int start, int end)

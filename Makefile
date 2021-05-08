@@ -6,7 +6,7 @@
 #    By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/21 10:14:46 by zqadiri           #+#    #+#              #
-#    Updated: 2021/05/08 14:20:07 by zqadiri          ###   ########.fr        #
+#    Updated: 2021/05/08 15:49:36 by zqadiri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS_PS =	./push_swap_f/push_swap.c\
 			./push_swap_f/utils.c\
 			./push_swap_f/parsing.c\
 			./push_swap_f/instructions.c\
+			./push_swap_f/instructions_2.c\
 
 all: 		$(NAME_CK)  $(NAME_PS)
 
