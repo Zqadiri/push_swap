@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:23:32 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/06/23 20:52:56 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/23 21:19:35 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,10 @@ void	move_to_b(t_data *m, int delim)
 
 	m->pos = 0;
 	i = 0;
-	step = m->a_size / 5;
+	if (delim == 4)
+		step = m->a_size / 5;
+	else
+		step = m->a_size / 12;
 	while (i <= delim)
 	{
 		if (i == delim)
