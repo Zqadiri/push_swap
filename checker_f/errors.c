@@ -60,8 +60,5 @@ void	help(char *inst, t_data *m)
 		apply_rra(m);
 	}
 	else
-	{
-		ft_putstr("Error\n");
-		exit (EXIT_FAILURE);
-	}
+		exit_error();
 }

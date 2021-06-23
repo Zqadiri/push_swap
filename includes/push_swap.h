@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:39:00 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 17:35:43 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/23 20:52:46 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,7 @@ int					top(t_data *m, int start, int end);
 int					hold_bottom(t_data *m, int start, int end);
 int					hold_first(t_data *m, int start, int end);
 int					find_init_values(t_data *m);
+void				find_mid_value(t_data *m);
+void				ft_sorted(t_data *m);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:23:32 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 17:41:30 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/23 20:52:56 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,20 +75,61 @@ void	move_b(t_data *m, int start, int end)
 	}
 }
 
-void	move_to_b(t_data *m, int delim, int step)
+void	ft_sorted(t_data *m)
 {
-	m->pos = 0;
-	while (m->inst.start_value < delim)
+	int i;
+	int k;
+	int tmp;
+
+	i = 0;
+	while ( i < m->a_size)
 	{
-		move_b(m, m->inst.start_value, m->inst.start_value + (step - 1));
-		m->inst.start_value += step;
+		k = 0;
+		while (k < m->a_size - i - 1)
+		{
+			if (m->dup[k] > m->dup[k + 1])
+			{
+				tmp = m->dup[k];
+				m->dup[k] = m->dup[k + 1];
+				m->dup[k + 1] = tmp;
+			}
+			k++;
+		}
+		i++;
+	}
+}
+
+void	move_to_b(t_data *m, int delim)
+{
+	int step;
+	int	i;
+
+	m->pos = 0;
+	i = 0;
+	step = m->a_size / 5;
+	while (i <= delim)
+	{
+		if (i == delim)
+		{
+			move_b(m, m->dup[i * step + 1], m->dup[m->dup_size - 1]);
+			break;
+		}
+		if (i == 0)
+		{
+			move_b(m, m->dup[0], m->dup[step * (i + 1)]);
+			i++;
+			continue;
+		}
+		move_b(m, m->dup[i * step + 1], m->dup[step * (i + 1)]);
+		i++;
 	}
 }
 
 void	sort_100_500(t_data *m, int delim, int step)
 {
+	ft_sorted(m);
 	delim = find_init_values(m);
-	move_to_b(m, delim, step);
+	move_to_b(m, step);
 	while (m->b_size != 0)
 	{
 		m->pos = find_big_one(m->stack_b, m->b_size);

@@ -28,7 +28,7 @@ void	check_duplicate(t_data *m)
 		while (j < m->a_size)
 		{
 			if (m->stack_a[i] == m->stack_a[j])
-				error_code(3);
+				exit_error();
 			j++;
 		}
 		i++;
@@ -49,7 +49,7 @@ long	long	get_number(char *arg, int i)
 		if (arg[i] >= '0' && arg[i] <= '9')
 			digit = (digit * 10) + arg[i] - '0';
 		else
-			error_code(1);
+			exit_error();
 		i++;
 	}
 	return (digit);
@@ -65,21 +65,21 @@ void	is_valid(t_data *m, char *arg)
 	i = 0;
 	signe = 1;
 	if (len(arg) > 17)
-		error_code (2);
+		exit_error();
 	if (arg[i] == '-')
 	{
 		signe = -1;
 		if (!(isdigit(arg[++i])))
-			error_code(1);
+			exit_error();
 	}
 	if (arg[i] == '+')
 	{
 		if (!(isdigit(arg[++i])))
-			error_code(1);
+			exit_error();
 	}
 	digit = get_number(arg, i);
 	if (!(check_overflow(digit * signe)))
-		error_code (2);
+		exit_error();
 	m->stack_a[++m->pos] = (int)digit * signe;
 }
 
@@ -105,8 +105,7 @@ int	main(int argc, char *argv[])
 	int		count;
 
 	count = 1;
-	if (argc-- < 2)
-		return (EXIT_SUCCESS);
+	 
 	init_struct(&m, argc);
 	init_stacks(&m, argc);
 	while (argv[count])
@@ -120,5 +119,6 @@ int	main(int argc, char *argv[])
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
-	return (EXIT_SUCCESS);
+	system("leaks checker");
+	return (EXIT_SUCCESS); 
 }

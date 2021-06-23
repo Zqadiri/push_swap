@@ -24,7 +24,7 @@ void	check_duplicate(t_data *m)
 		while (j < m->a_size)
 		{
 			if (m->stack_a[i] == m->stack_a[j])
-				error_code(3);
+				exit_error(3);
 			j++;
 		}
 		i++;
@@ -98,9 +98,9 @@ void 	begin_sort(t_data *m)
 	else if (m->a_size == 5)
 		sort_stack_5(m);
 	else if (m->a_size <= 100)
-		sort_100_500(m, 100, 20);
+		sort_100_500(m, 100, 4);
 	else if (m->a_size <= 500)
-		sort_100_500(m, 500, 40);
+		sort_100_500(m, 500, 11);
 }
 
 int	main(int argc, char *argv[])
@@ -110,10 +110,13 @@ int	main(int argc, char *argv[])
 
 	count = 1;
 	if (argc == 2)
+	{
+		is_valid(&m, argv[1]);
 		return (EXIT_SUCCESS);
-	if (argc-- < 2)
+	}
+	if (argc <= 2)
 		exit (EXIT_FAILURE);
-	init_struct(&m, argc);
+ 	init_struct(&m, argc);
 	init_stacks(&m, argc);
 	while (argv[count])
 	{

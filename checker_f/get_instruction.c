@@ -71,7 +71,7 @@ void	push_a(t_data *m)
 void	check_valid_instr(t_data *m, char *inst)
 {
 	if (inst[0] == '\0')
-		error_code(4);
+		exit_error();
 	else
 	{
 		if (!ft_strcmp(inst, "sa"))
@@ -117,10 +117,12 @@ void	get_instruction(t_data *m)
 			check_valid_instr(m, inst);
 		}
 		else
-			error_code(4);
+			exit_error();
 		free_param(buff, inst);
 		new = 1;
 	}
 	if (buff[0])
 		check_valid_instr(m, buff);
+	free(buff);
+	buff = NULL;
 }

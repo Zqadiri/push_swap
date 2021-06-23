@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:27:21 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 15:34:22 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/23 20:18:23 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ long	long	get_number(char *arg, int i)
 		if (arg[i] >= '0' && arg[i] <= '9')
 			digit = (digit * 10) + arg[i] - '0';
 		else
-			error_code(1);
+			exit_error(1);
 		i++;
 	}
 	return (digit);
 }
-
+// int k = 0;
 void	is_valid(t_data *m, char *arg)
 {
 	int			i;
@@ -38,34 +38,38 @@ void	is_valid(t_data *m, char *arg)
 	i = 0;
 	signe = 1;
 	if (len(arg) > 17)
-		error_code (2);
+		exit_error (2);
 	if (arg[i] == '-')
 	{
 		signe = -1;
 		if (!(isdigit(arg[++i])))
-			error_code(1);
+			exit_error(1);
 	}
 	if (arg[i] == '+')
 	{
 		if (!(isdigit(arg[++i])))
-			error_code(1);
+			exit_error(1);
 	}
 	digit = get_number(arg, i);
 	if (!(check_overflow(digit * signe)))
-		error_code (2);
+		exit_error (2);
 	m->stack_a[++m->pos] = (int)digit * signe;
+	m->dup[m->pos] = (int)digit * signe;
+	// printf("%d\n", m->dup[k++]);
 }
 
 void	init_struct(t_data *m, int argc )
 {
 	m->pos = -1;
-	m->a_size = argc;
+	m->a_size = argc - 1;
+	m->dup_size = argc - 1;
 	m->b_size = 0;
 	m->stack_b = NULL;
 	m->stack_a = NULL;
 	m->inst.index = -1;
 	m->inst.pivot = -1;
 	m->inst.best_rot = NULL;
+
 }
 
 void	init_stacks(t_data *m, int argc)

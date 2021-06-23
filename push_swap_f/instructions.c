@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:38:10 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 15:47:36 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/23 16:48:16 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	push_a(t_data *m)
 	while (i-- > 0)
 		m->stack_a[i + 1] = m->stack_a[i];
 	m->stack_a[0] = m->stack_b[0];
-	i = 0;
-	while (i++ <= m->b_size)
-		m->stack_b[i - 1] = m->stack_b[i];
+	i = -1;
+	while (++i < m->b_size)
+		m->stack_b[i] = m->stack_b[i + 1];
 	m->a_size++;
 	m->b_size--;
 	printf ("pa\n");
