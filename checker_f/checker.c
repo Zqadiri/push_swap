@@ -93,10 +93,6 @@ void	init_stacks(t_data *m, int argc)
 	if (m->stack_b == NULL)
 		exit(EXIT_FAILURE);
 	ft_memset(m->stack_b, 0, argc);
-	m->dup = malloc(sizeof(int) * (argc));
-	if (m->dup == NULL)
-		exit(EXIT_FAILURE);
-	ft_memset(m->dup, 0, argc);
 }
 
 int	main(int argc, char *argv[])
@@ -105,7 +101,8 @@ int	main(int argc, char *argv[])
 	int		count;
 
 	count = 1;
-	 
+	if (argc-- < 2)
+		exit(EXIT_SUCCESS);
 	init_struct(&m, argc);
 	init_stacks(&m, argc);
 	while (argv[count])
@@ -119,6 +116,5 @@ int	main(int argc, char *argv[])
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
-	system("leaks checker");
-	return (EXIT_SUCCESS); 
+	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 10:27:46 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/06/23 13:05:42 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/25 12:15:14 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int			find_big_one(int *stack, int size);
 void		*ft_memset(void *str, int val, size_t len);
 int			find_pos(int *stack, int size, int elem);
 int			len(char *arg);
-void        exit_error();
+void		exit_error(void);
 
 #endif

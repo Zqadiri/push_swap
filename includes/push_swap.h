@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:39:00 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/06/23 20:52:46 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/25 12:02:46 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_data
 	int				*stack_a;
 	int				*stack_b;
 	int				*dup;
-	int				*top;
 	int				pos;
 	int				a_size;
 	int				dup_size;
@@ -75,7 +74,7 @@ void				begin_sort(t_data *m);
 void				create_str(t_data *m, char *inst, int len);
 void				find_best_way_a_b(t_data *m, int elem);
 void				help(char *inst, t_data *m);
-void				sort_100_500(t_data *m, int delim, int step);
+void				sort_100_500(t_data *m, int step);
 void				move_b(t_data *m, int start, int end);
 int					bottom(t_data *m, int start, int end);
 int					top(t_data *m, int start, int end);

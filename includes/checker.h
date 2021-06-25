@@ -18,26 +18,14 @@
 # include <unistd.h>
 # include "../includes/helpers.h"
 
-typedef struct s_instruction
-{
-	int				index;
-	int				pivot;
-	int				elem;
-	int				start_value;
-	int				small;
-	int				big;
-}	t_instruction;
-
 typedef struct s_data
 {
 	int				*stack_a;
 	int				*stack_b;
-	int				*dup;
-	int				pos;
+	char			*inst_tmp;
 	int				a_size;
-	int				dup_size;
 	int				b_size;
-	t_instruction	inst;
+	int				pos;
 }	t_data;
 
 /*
@@ -52,12 +40,12 @@ void				swap_b(t_data *m);
 void				swap_a(t_data *m);
 void				apply_rra(t_data *m);
 void				apply_rrb(t_data *m);
-void				get_instruction(t_data *m);
 
 /*
 ** Parsing
 */
 
+void				get_instruction(t_data *m);
 void				is_valid(t_data *data, char *arg);
 void				check_duplicate(t_data *data);
 void				init_struct(t_data *data, int argc);

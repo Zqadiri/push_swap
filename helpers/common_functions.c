@@ -6,24 +6,30 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 10:49:47 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/06/23 13:09:43 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/25 12:11:39 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/helpers.h"
 
-void	exit_error()
+void	exit_error(void)
 {
 	write (2, "Error\n", 6);
-	exit (EXIT_FAILURE);	
+	exit (EXIT_FAILURE);
 }
 
 void	free_param(char *buff, char*inst)
 {
-	free(inst);
-	inst = NULL;
-	free (buff);
-	buff = NULL;
+	if (inst)
+	{
+		free(inst);
+		inst = NULL;
+	}
+	if (buff)
+	{
+		free (buff);
+		buff = NULL;
+	}
 }
 
 int	ft_strcmp(char *s1, char *s2)

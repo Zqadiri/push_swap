@@ -24,7 +24,7 @@ void	check_duplicate(t_data *m)
 		while (j < m->a_size)
 		{
 			if (m->stack_a[i] == m->stack_a[j])
-				exit_error(3);
+				exit_error();
 			j++;
 		}
 		i++;
@@ -40,14 +40,10 @@ void	sort_stack_3(t_data *m)
 	int	big;
 
 	big = find_big_one(m->stack_a, m->a_size);
-	if (m->a_size == 1)
-		return ;
 	if (m->a_size == 2)
 	{
 		if (m->stack_a[0] > m->stack_a[1])
-		{
 			apply_rra(m);
-		}
 	}
 	else if (m->a_size == 3)
 	{
@@ -71,13 +67,15 @@ void	sort_stack_5(t_data *m)
 		else
 		{
 			find_best_way_a_b(m, m->stack_a[m->inst.small]);
-			while (m->inst.small != 0)
+			while (1)
 			{
 				m->inst.small = find_small_one(m->stack_a, m->a_size);
 				if (m->inst.best_rot[0] == 'r' && m->inst.best_rot[1] == 'a')
 					rotate_a(m);
 				else
 					apply_rra(m);
+				if (m->inst.small == 0)
+					break;
 			}
 			push_b(m);
 		}
@@ -98,9 +96,24 @@ void 	begin_sort(t_data *m)
 	else if (m->a_size == 5)
 		sort_stack_5(m);
 	else if (m->a_size <= 100)
-		sort_100_500(m, 100, 4);
-	else if (m->a_size <= 500)
-		sort_100_500(m, 500, 11);
+		sort_100_500(m, 4);
+	else
+		sort_100_500(m, 10);
+}
+
+void	check(char *num)
+{
+	int	i;
+
+	i = 0;
+	if (num[i] == '-' || num[i] == '+')
+		i++;
+	while (num[i])
+	{
+		if (num[i] <= '0' || num[i] >= '9')
+			exit_error();
+		i++;
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -109,13 +122,16 @@ int	main(int argc, char *argv[])
 	int		count;
 
 	count = 1;
-	if (argc == 2)
+	if (argc == 1)
+		exit(EXIT_SUCCESS);
+	if  (argc == 2)
+		check(argv[1]);
+	if (argc < 2)
 	{
-		is_valid(&m, argv[1]);
-		return (EXIT_SUCCESS);
+		argc--;
+		is_valid(&m, argv[argc]);
+		exit (EXIT_SUCCESS);
 	}
-	if (argc <= 2)
-		exit (EXIT_FAILURE);
  	init_struct(&m, argc);
 	init_stacks(&m, argc);
 	while (argv[count])
@@ -127,9 +143,5 @@ int	main(int argc, char *argv[])
 	if (is_sorted(&m))
 		exit(EXIT_SUCCESS);
 	begin_sort(&m);
-	if (is_sorted(&m))
-		ft_putstr("OK\n");
-	else
-		ft_putstr("KO\n");
 	return (EXIT_SUCCESS);
 }

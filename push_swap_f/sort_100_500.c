@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:23:32 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/06/23 21:19:35 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/24 16:17:05 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	move_to_b(t_data *m, int delim)
 	if (delim == 4)
 		step = m->a_size / 5;
 	else
-		step = m->a_size / 12;
+		step = m->a_size / 11;
 	while (i <= delim)
 	{
 		if (i == delim)
@@ -128,10 +128,9 @@ void	move_to_b(t_data *m, int delim)
 	}
 }
 
-void	sort_100_500(t_data *m, int delim, int step)
+void	sort_100_500(t_data *m, int step)
 {
 	ft_sorted(m);
-	delim = find_init_values(m);
 	move_to_b(m, step);
 	while (m->b_size != 0)
 	{

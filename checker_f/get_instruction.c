@@ -99,7 +99,6 @@ void	check_valid_instr(t_data *m, char *inst)
 void	get_instruction(t_data *m)
 {
 	char	*buff;
-	char	*inst;
 	char	*pfree;
 	int		new;
 
@@ -107,22 +106,21 @@ void	get_instruction(t_data *m)
 	while (get_next_line(&buff) > 0)
 	{
 		if (new)
-			inst = ft_strdup("");
+			m->inst_tmp = ft_strdup("");
 		if (buff[0] != '\0')
 		{
 			new = 0;
-			pfree = inst;
-			inst = ft_strjoin (inst, &buff[0]);
+			pfree = m->inst_tmp;
+			m->inst_tmp = ft_strjoin (m->inst_tmp, &buff[0]);
 			free (pfree);
-			check_valid_instr(m, inst);
+			check_valid_instr(m, m->inst_tmp);
 		}
 		else
 			exit_error();
-		free_param(buff, inst);
+		free_param(buff, m->inst_tmp);
 		new = 1;
 	}
 	if (buff[0])
 		check_valid_instr(m, buff);
-	free(buff);
-	buff = NULL;
+	free_param(buff, m->inst_tmp);
 }

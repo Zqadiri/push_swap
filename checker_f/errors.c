@@ -19,9 +19,6 @@ void	init_struct(t_data *m, int argc )
 	m->b_size = 0;
 	m->stack_b = NULL;
 	m->stack_a = NULL;
-	m->inst.index = -1;
-	m->inst.pivot = -1;
-	m->inst.big = 0;
 }
 
 int	is_sorted(t_data *m)
