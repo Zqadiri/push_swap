@@ -58,7 +58,6 @@ void	sort_stack_3(t_data *m)
 
 void	sort_stack_5(t_data *m)
 {
-	m->inst.small = 0;
 	while (m->b_size < 2)
 	{
 		m->inst.small = find_small_one(m->stack_a, m->a_size);
@@ -75,7 +74,7 @@ void	sort_stack_5(t_data *m)
 				else
 					apply_rra(m);
 				if (m->inst.small == 0)
-					break;
+					break ;
 			}
 			push_b(m);
 		}
@@ -83,36 +82,19 @@ void	sort_stack_5(t_data *m)
 	sort_stack_3(m);
 	if (m->stack_b[0] < m->stack_b[1])
 		swap_b(m);
-	while (m->b_size != 0)
-		push_a(m);
 }
 
-void 	begin_sort(t_data *m)
+void	check_args(t_data *m, int argc, char **argv)
 {
-	if (is_sorted(m))
-		return ;
-	if (m->a_size <= 3)
-		sort_stack_3(m);
-	else if (m->a_size == 5)
-		sort_stack_5(m);
-	else if (m->a_size <= 100)
-		sort_100_500(m, 4);
-	else
-		sort_100_500(m, 10);
-}
-
-void	check(char *num)
-{
-	int	i;
-
-	i = 0;
-	if (num[i] == '-' || num[i] == '+')
-		i++;
-	while (num[i])
+	if (argc == 1)
+		exit(EXIT_SUCCESS);
+	if (argc == 2)
+		check(argv[1]);
+	if (argc < 2)
 	{
-		if (num[i] <= '0' || num[i] >= '9')
-			exit_error();
-		i++;
+		argc--;
+		is_valid(m, argv[argc]);
+		exit (EXIT_SUCCESS);
 	}
 }
 
@@ -122,18 +104,8 @@ int	main(int argc, char *argv[])
 	int		count;
 
 	count = 1;
-	if (argc == 1)
-		exit(EXIT_SUCCESS);
-	if  (argc == 2)
-		check(argv[1]);
-	if (argc < 2)
-	{
-		argc--;
-		is_valid(&m, argv[argc]);
-		exit (EXIT_SUCCESS);
-	}
- 	init_struct(&m, argc);
-	init_stacks(&m, argc);
+	check_args(&m, argc, argv);
+	init_(&m, argc);
 	while (argv[count])
 	{
 		is_valid(&m, argv[count]);

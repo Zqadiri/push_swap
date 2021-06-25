@@ -12,13 +12,21 @@
 
 #include "../includes/checker.h"
 
-void	init_struct(t_data *m, int argc )
+void	init_(t_data *m, int argc )
 {
 	m->pos = -1;
 	m->a_size = argc;
 	m->b_size = 0;
 	m->stack_b = NULL;
 	m->stack_a = NULL;
+	m->stack_a = malloc(sizeof(int) * (argc));
+	if (m->stack_a == NULL)
+		exit(EXIT_FAILURE);
+	ft_memset(m->stack_a, 0, argc);
+	m->stack_b = malloc(sizeof(int) * (argc));
+	if (m->stack_b == NULL)
+		exit(EXIT_FAILURE);
+	ft_memset(m->stack_b, 0, argc);
 }
 
 int	is_sorted(t_data *m)

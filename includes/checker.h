@@ -48,8 +48,7 @@ void				apply_rrb(t_data *m);
 void				get_instruction(t_data *m);
 void				is_valid(t_data *data, char *arg);
 void				check_duplicate(t_data *data);
-void				init_struct(t_data *data, int argc);
-void				init_stacks(t_data *data, int argc);
+void				init_(t_data *data, int argc);
 int					is_sorted(t_data *m);
 void				help(char *inst, t_data *m);
 

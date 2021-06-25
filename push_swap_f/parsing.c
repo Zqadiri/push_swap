@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:27:21 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/06/25 12:14:14 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/25 14:31:57 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	is_valid(t_data *m, char *arg)
 	m->dup[m->pos] = (int)digit * signe;
 }
 
-void	init_struct(t_data *m, int argc )
+void	init_(t_data *m, int argc)
 {
 	m->pos = -1;
 	m->a_size = argc - 1;
@@ -68,10 +68,6 @@ void	init_struct(t_data *m, int argc )
 	m->inst.index = -1;
 	m->inst.pivot = -1;
 	m->inst.best_rot = NULL;
-}
-
-void	init_stacks(t_data *m, int argc)
-{
 	m->stack_a = malloc(sizeof(int) * (argc));
 	if (m->stack_a == NULL)
 		exit(EXIT_FAILURE);
@@ -103,4 +99,19 @@ int	is_sorted(t_data *m)
 			return (0);
 	}
 	return (1);
+}
+
+void	check(char *num)
+{
+	int	i;
+
+	i = 0;
+	if (num[i] == '-' || num[i] == '+')
+		i++;
+	while (num[i])
+	{
+		if (num[i] <= '0' || num[i] >= '9')
+			exit_error();
+		i++;
+	}
 }

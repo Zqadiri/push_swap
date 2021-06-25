@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:23:32 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/06/24 16:17:05 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/25 16:25:58 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,33 +75,9 @@ void	move_b(t_data *m, int start, int end)
 	}
 }
 
-void	ft_sorted(t_data *m)
-{
-	int i;
-	int k;
-	int tmp;
-
-	i = 0;
-	while ( i < m->a_size)
-	{
-		k = 0;
-		while (k < m->a_size - i - 1)
-		{
-			if (m->dup[k] > m->dup[k + 1])
-			{
-				tmp = m->dup[k];
-				m->dup[k] = m->dup[k + 1];
-				m->dup[k + 1] = tmp;
-			}
-			k++;
-		}
-		i++;
-	}
-}
-
 void	move_to_b(t_data *m, int delim)
 {
-	int step;
+	int	step;
 	int	i;
 
 	m->pos = 0;
@@ -115,13 +91,13 @@ void	move_to_b(t_data *m, int delim)
 		if (i == delim)
 		{
 			move_b(m, m->dup[i * step + 1], m->dup[m->dup_size - 1]);
-			break;
+			break ;
 		}
 		if (i == 0)
 		{
 			move_b(m, m->dup[0], m->dup[step * (i + 1)]);
 			i++;
-			continue;
+			continue ;
 		}
 		move_b(m, m->dup[i * step + 1], m->dup[step * (i + 1)]);
 		i++;
@@ -130,7 +106,7 @@ void	move_to_b(t_data *m, int delim)
 
 void	sort_100_500(t_data *m, int step)
 {
-	ft_sorted(m);
+	_sorted(m);
 	move_to_b(m, step);
 	while (m->b_size != 0)
 	{

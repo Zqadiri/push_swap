@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 15:43:55 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/05/08 15:48:02 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/25 16:01:46 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,27 @@ void	swap_b(t_data *m)
 		m->stack_b[1] = tmp;
 	}
 	printf ("sb\n");
+}
+
+/*
+** shift up all elements of stack b by 1. The first 
+** element becomes the last one.
+*/
+
+void	rotate_b(t_data *m)
+{
+	int	i;
+	int	tmp;
+
+	i = 1;
+	tmp = m->stack_b[0];
+	if (m->b_size == 0)
+		return ;
+	while (i < m->b_size)
+	{
+		m->stack_b[i - 1] = m->stack_b[i];
+		i++;
+	}
+	m->stack_b[i - 1] = tmp;
+	printf ("rb\n");
 }

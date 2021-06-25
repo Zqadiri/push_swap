@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:39:00 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/06/25 12:02:46 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/25 15:56:40 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ void				apply_rrb(t_data *m);
 
 void				is_valid(t_data *data, char *arg);
 void				check_duplicate(t_data *data);
-void				init_struct(t_data *data, int argc);
-void				init_stacks(t_data *data, int argc);
+void				init_(t_data *m, int argc);
 int					is_sorted(t_data *m);
 
 /*
@@ -76,12 +75,9 @@ void				find_best_way_a_b(t_data *m, int elem);
 void				help(char *inst, t_data *m);
 void				sort_100_500(t_data *m, int step);
 void				move_b(t_data *m, int start, int end);
-int					bottom(t_data *m, int start, int end);
-int					top(t_data *m, int start, int end);
 int					hold_bottom(t_data *m, int start, int end);
 int					hold_first(t_data *m, int start, int end);
-int					find_init_values(t_data *m);
-void				find_mid_value(t_data *m);
-void				ft_sorted(t_data *m);
+void				_sorted(t_data *m);
+void				check(char *num);
 
 #endif

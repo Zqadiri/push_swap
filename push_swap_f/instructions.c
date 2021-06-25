@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:38:10 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/06/23 16:48:16 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/25 16:26:24 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,25 +81,45 @@ void	rotate_a(t_data *m)
 	printf ("ra\n");
 }
 
-/*
-** shift up all elements of stack b by 1. The first 
-** element becomes the last one.
-*/
+void 	begin_sort(t_data *m)
+{
+	if (is_sorted(m))
+		return ;
+	if (m->a_size <= 3)
+		sort_stack_3(m);
+	else if (m->a_size == 5)
+	{
+		m->inst.small = 0;
+		sort_stack_5(m);
+		while (m->b_size != 0)
+			push_a(m);
+	}
+	else if (m->a_size <= 100)
+		sort_100_500(m, 4);
+	else
+		sort_100_500(m, 10);
+}
 
-void	rotate_b(t_data *m)
+void	_sorted(t_data *m)
 {
 	int	i;
+	int	k;
 	int	tmp;
 
-	i = 1;
-	tmp = m->stack_b[0];
-	if (m->b_size == 0)
-		return ;
-	while (i < m->b_size)
+	i = 0;
+	while (i < m->a_size)
 	{
-		m->stack_b[i - 1] = m->stack_b[i];
+		k = 0;
+		while (k < m->a_size - i - 1)
+		{
+			if (m->dup[k] > m->dup[k + 1])
+			{
+				tmp = m->dup[k];
+				m->dup[k] = m->dup[k + 1];
+				m->dup[k + 1] = tmp;
+			}
+			k++;
+		}
 		i++;
 	}
-	m->stack_b[i - 1] = tmp;
-	printf ("rb\n");
 }
