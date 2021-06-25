@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:38:10 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/06/25 16:26:24 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/25 16:29:16 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ void 	begin_sort(t_data *m)
 			push_a(m);
 	}
 	else if (m->a_size <= 100)
-		sort_100_500(m, 4);
+		sort_big_stacks(m, 4);
 	else
-		sort_100_500(m, 10);
+		sort_big_stacks(m, 10);
 }
 
 void	_sorted(t_data *m)

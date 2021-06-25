@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 11:39:00 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/06/25 15:56:40 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/25 16:29:04 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void				begin_sort(t_data *m);
 void				create_str(t_data *m, char *inst, int len);
 void				find_best_way_a_b(t_data *m, int elem);
 void				help(char *inst, t_data *m);
-void				sort_100_500(t_data *m, int step);
+void				sort_big_stacks(t_data *m, int step);
 void				move_b(t_data *m, int start, int end);
 int					hold_bottom(t_data *m, int start, int end);
 int					hold_first(t_data *m, int start, int end);

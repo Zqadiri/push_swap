@@ -122,5 +122,5 @@ void	get_instruction(t_data *m)
 	}
 	if (buff[0])
 		check_valid_instr(m, buff);
-	free_param(buff, m->inst_tmp);
+	free(buff);
 }

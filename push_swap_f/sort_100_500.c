@@ -6,13 +6,13 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:23:32 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/06/25 16:25:58 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/25 16:28:48 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	calculate_best_way_h(t_data *m)
+static	void	calculate_best_way_h(t_data *m)
 {
 	while (m->inst.index != 0)
 	{
@@ -104,7 +104,7 @@ void	move_to_b(t_data *m, int delim)
 	}
 }
 
-void	sort_100_500(t_data *m, int step)
+void	sort_big_stacks(t_data *m, int step)
 {
 	_sorted(m);
 	move_to_b(m, step);
