@@ -6,7 +6,7 @@
 /*   By: zqadiri <zqadiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:23:32 by zqadiri           #+#    #+#             */
-/*   Updated: 2021/06/25 16:28:48 by zqadiri          ###   ########.fr       */
+/*   Updated: 2021/06/27 10:21:57 by zqadiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ static	void	calculate_best_way_h(t_data *m)
 			rotate_a(m);
 		else
 			apply_rra(m);
-	}	
+	}
+	free(m->inst.best_rot);
+	m->inst.best_rot = NULL;
 }
 
 void	calculate_best_way(t_data *m, int top, int bottom)

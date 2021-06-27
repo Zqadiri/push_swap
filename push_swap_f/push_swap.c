@@ -68,11 +68,11 @@ void	sort_stack_5(t_data *m)
 			find_best_way_a_b(m, m->stack_a[m->inst.small]);
 			while (1)
 			{
-				m->inst.small = find_small_one(m->stack_a, m->a_size);
 				if (m->inst.best_rot[0] == 'r' && m->inst.best_rot[1] == 'a')
 					rotate_a(m);
 				else
 					apply_rra(m);
+				m->inst.small = find_small_one(m->stack_a, m->a_size);
 				if (m->inst.small == 0)
 					break ;
 			}
